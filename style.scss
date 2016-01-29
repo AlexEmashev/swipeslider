@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#slides {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  transform: translateX(0);
+}
+
+.slide {
+  font-size: 60px;
+  color: #989898;
+  font-family: sans-serif;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  background-color: #cccccc;
+}
+
+.animate {
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: ease-out;
+}
+
+.static-move {
+  transition-property: none;
+  transition-duration: 0;
+}
+
+.slide:nth-child(1) {}
+.slide:nth-child(2) {}
+.slide:nth-child(3) {}
+.slide:nth-child(4) {}
+.slide:nth-child(5) {}
+.slide:nth-child(6) {}
+.slide:nth-child(7) {}
