@@ -8,6 +8,14 @@ body {
   background-color: #333;
 }
 
+#slider-container {
+  margin: 150px auto 0;
+  width: 500px;
+  height: 200px;
+  background-color: #404040;
+  overflow: hidden;
+}
+
 #slides {
   width: 100%;
   height: 100%;
@@ -18,7 +26,8 @@ body {
 
 .slide {
   font-size: 60px;
-  color: #989898;
+  padding-top: 55px;
+  color: #d4d4d4;
   font-family: sans-serif;
   text-align: center;
   width: 100%;
@@ -39,11 +48,3 @@ body {
   transition-property: none;
   transition-duration: 0;
 }
-
-.slide:nth-child(1) {}
-.slide:nth-child(2) {}
-.slide:nth-child(3) {}
-.slide:nth-child(4) {}
-.slide:nth-child(5) {}
-.slide:nth-child(6) {}
-.slide:nth-child(7) {}

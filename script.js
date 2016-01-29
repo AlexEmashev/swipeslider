@@ -1,14 +1,22 @@
 $(window).load(function() {
+  /** Sliding status:
+  /* 0 - sliding not started
+  /* 1 - sliding started
+  /* 2 - slide released
+  */
   var sliding = 0;
   var startClientX = 0;
   var startPixelOffset = 0;
   var pixelOffset = 0;
-  var currentSlide = 0;
+  var currentSlide = 1;
   var slideCount = 0;
   var slideWidth = 0;
   var transitionDuration = 0;
+  var autoPlayTimeout = 6000;
+  var animationDelayID = undefined;
+  var autoAnimation = true;
   
-  $('html').on('mousedown touchstart', slideStart);
+  $('#slides').on('mousedown touchstart', slideStart);
   $('html').on('mouseup touchend', slideEnd);
   $('html').on('mousemove touchmove', slide);
   
@@ -35,8 +43,9 @@ $(window).load(function() {
     // If it is mobile device redefine event to first touch point
     if (event.originalEvent.touches)
       event = event.originalEvent.touches[0];
-    // If sliding not started yet store current touch position to calculate distance in future.
-    if (sliding == 0) {
+    
+    // Check if slide started on slider 
+    if (sliding == 0){
       sliding = 1; // Status 1 = slide started.
       startClientX = event.clientX;
     }
@@ -46,16 +55,18 @@ $(window).load(function() {
   */
   function slide(event) {
     event.preventDefault();
-    
     if (event.originalEvent.touches)
       event = event.originalEvent.touches[0];
+    
     // Distance of slide.
     var deltaSlide = event.clientX - startClientX;
+    
     // If sliding started first time and there was a distance.
     if (sliding == 1 && deltaSlide != 0) {
       sliding = 2; // Set status to 'actually moving'
       startPixelOffset = pixelOffset; // Store current offset
     }
+    //ToDo: first slide switches weird
     
     //  When user move image
     if (sliding == 2) {
@@ -63,9 +74,10 @@ $(window).load(function() {
       var touchPixelRatio = 1;
       // Check for user doesn't slide out of boundaries
       if ((currentSlide == 0 && event.clientX > startClientX) ||
-         (currentSlide == slideCount - 1 && event.clientX < startClientX))
+         (currentSlide == slideCount - 1 && event.clientX < startClientX)){
         // Set ratio to 3 means image will be moving by 3 pixels each time user moves it's pointer by 1 pixel. (Rubber-band effect)
         touchPixelRatio = 3;
+      }
       // Calculate move distance.
       pixelOffset = startPixelOffset + deltaSlide / touchPixelRatio;
       // Apply moving and remove animation class
@@ -84,29 +96,30 @@ $(window).load(function() {
       // Make sure that unexisting slides weren't selected.
       currentSlide = Math.min(Math.max(currentSlide, 0), slideCount - 1);
       // Since in this example slide is full viewport width offset can be calculated according to it.
-      pixelOffset = currentSlide * -$('body').width();
+      pixelOffset = currentSlide * -slideWidth;
+      
       // Remove style from DOM (look below)
       $('#temp').remove();
       // Add a translate rule dynamically and asign id to it
       $('<style id="temp">#slides.animate{transform: translateX(' + pixelOffset + 'px)}</style>').appendTo('head');
       // Add animate class to slider and reset transform prop of this class.
       $('#slides').addClass('animate').css('transform', '');
+      
       autoAnimation = true;
       startAutoPlay();
     }
   }
   
-  var animationDelayID = undefined;
-  var currentSlide = 1;
-  var autoAnimation = true;
+
   
   function disableAutoPlay() {
     autoAnimation = false;
+    window.clearTimeout(animationDelayID);
   }
   // ToDo: Start animation with slight delay for autoplay, wait to finish translate;
   function startAutoPlay() {
     if(autoAnimation){
-      animationDelayID = window.setTimeout(autoPlay, 1000);
+      animationDelayID = window.setTimeout(autoPlay, autoPlayTimeout);
     }
   }
   
@@ -118,7 +131,6 @@ $(window).load(function() {
     } else {
       jumpToStart();
       currentSlide = 2;
-      //autoPlay();
     }
   }
   
@@ -128,11 +140,7 @@ $(window).load(function() {
     $('#slides').css('transform','translateX(-' + slideWidth + 'px)');  
     window.setTimeout(autoPlay, 50);
   }
-  
-  function stopAutoPlay() {
-    window.clearTimeout(animationDelayID);
-  }
-  
+
   function switchLeft(slide) {
     $('#slides').removeClass('static-move');
     $('#slides').addClass('animate');
