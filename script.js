@@ -1,5 +1,5 @@
 $(window).load(function() {
-  /** Sliding status:
+  /** Sliding states:
   /* 0 - sliding not started
   /* 1 - sliding started
   /* 2 - slide released
@@ -8,11 +8,13 @@ $(window).load(function() {
   var startClientX = 0;
   var startPixelOffset = 0;
   var pixelOffset = 0;
-  var currentSlide = 1;
+  var currentSlide = 0;
   var slideCount = 0;
   var slideWidth = 0;
-  var transitionDuration = 0;
-  var autoPlayTimeout = 6000;
+  // Swipe should be disabled while transition animation is playing.
+  var allowSwipe = true;
+  var transitionDuration = 500;
+  var autoPlayTimeout = 2000;
   var animationDelayID = undefined;
   var autoAnimation = true;
   
@@ -29,8 +31,8 @@ $(window).load(function() {
     $('#slides .slide:nth-child(2)').clone().appendTo('#slides');
     
     slideCount = $('.slide').length;
-    currentSlide = 1;
-    transitionDuration = .5;
+    currentSlide = 0;
+    transitionDuration = 500;
     
     startAutoPlay();
   }
@@ -39,7 +41,12 @@ $(window).load(function() {
   / Triggers when slide event started
   */
   function slideStart(event) {
-    autoAnimation = false;
+    if(!allowSwipe) {
+      return;
+    }
+    
+    //autoAnimation = false;
+    disableAutoPlay();
     // If it is mobile device redefine event to first touch point
     if (event.originalEvent.touches)
       event = event.originalEvent.touches[0];
@@ -58,13 +65,13 @@ $(window).load(function() {
     if (event.originalEvent.touches)
       event = event.originalEvent.touches[0];
     
-    // Distance of slide.
+    // Distance of slide from the first touch
     var deltaSlide = event.clientX - startClientX;
     
     // If sliding started first time and there was a distance.
     if (sliding == 1 && deltaSlide != 0) {
       sliding = 2; // Set status to 'actually moving'
-      startPixelOffset = pixelOffset; // Store current offset
+      startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
     }
     //ToDo: first slide switches weird
     
@@ -78,10 +85,12 @@ $(window).load(function() {
         // Set ratio to 3 means image will be moving by 3 pixels each time user moves it's pointer by 1 pixel. (Rubber-band effect)
         touchPixelRatio = 3;
       }
-      // Calculate move distance.
+      
+      // How far to translate slide while dragging.
       pixelOffset = startPixelOffset + deltaSlide / touchPixelRatio;
       // Apply moving and remove animation class
-      $('#slides').css('transform', 'translateX(' + pixelOffset + 'px').removeClass();
+      $('#slides').css('transform', 'translateX(' + pixelOffset + 'px').removeClass('animate');
+      
     }
   }
   
@@ -89,33 +98,64 @@ $(window).load(function() {
   */
   function slideEnd(event) {
     if (sliding == 2){
-      // Reset sliding.
+      // Reset sliding state.
       sliding = 0;
+            
       // Calculate which slide need to be in view.
       currentSlide = pixelOffset < startPixelOffset ? currentSlide + 1 : currentSlide -1;
+            
+      // If last slide jump to first slide.
+      if (currentSlide == slideCount) {
+        jumpToStart();
+        return;
+      }
+      
+      if (currentSlide < 0){
+        jumpToEnd();
+        return;
+      }
+      
       // Make sure that unexisting slides weren't selected.
       currentSlide = Math.min(Math.max(currentSlide, 0), slideCount - 1);
+      
       // Since in this example slide is full viewport width offset can be calculated according to it.
       pixelOffset = currentSlide * -slideWidth;
       
-      // Remove style from DOM (look below)
-      $('#temp').remove();
-      // Add a translate rule dynamically and asign id to it
-      $('<style id="temp">#slides.animate{transform: translateX(' + pixelOffset + 'px)}</style>').appendTo('head');
-      // Add animate class to slider and reset transform prop of this class.
-      $('#slides').addClass('animate').css('transform', '');
+      disableSwipe();
       
-      autoAnimation = true;
-      startAutoPlay();
+      $('#slides').addClass('animate');
+      $('#slides').css('transform', 'translateX(' + pixelOffset + 'px)');
+      
+      // If this is the last slide, then wait animation is over
+      // and jump to first.
+      if (currentSlide == slideCount - 1){
+        window.setTimeout(jumpToStart, transitionDuration);
+      } else if (currentSlide == 0) {
+        window.setTimeout(jumpToEnd, transitionDuration);        
+      }
+      else {
+        autoAnimation = true;
+        startAutoPlay();
+      }
+      
+
     }
+  } 
+  
+  function disableSwipe() {
+    allowSwipe = false;
+    window.setTimeout(enableSwipe, transitionDuration)
   }
   
-
+  function enableSwipe() {
+    allowSwipe = true;
+  }
   
   function disableAutoPlay() {
     autoAnimation = false;
     window.clearTimeout(animationDelayID);
   }
+  
   // ToDo: Start animation with slight delay for autoplay, wait to finish translate;
   function startAutoPlay() {
     if(autoAnimation){
@@ -124,33 +164,48 @@ $(window).load(function() {
   }
   
   function autoPlay() {
-    if (currentSlide < slideCount) {
-      switchLeft(currentSlide);
-      currentSlide += 1;
-      startAutoPlay();
-    } else {
-      jumpToStart();
-      currentSlide = 2;
+    currentSlide += 1;
+    switchLeft();
+
+    // If switched to last slide, wait until animation is over and jump to the second.
+    if (currentSlide == slideCount - 1) {
+      window.setTimeout(jumpToStart, transitionDuration);
     }
+
+    startAutoPlay();
   }
   
   function jumpToStart() {
     $('#slides').removeClass('animate');
-    $('#slides').addClass('static-move');
+    $('#slides').addClass('disable-animation');
     $('#slides').css('transform','translateX(-' + slideWidth + 'px)');  
-    window.setTimeout(autoPlay, 50);
-  }
-
-  function switchLeft(slide) {
-    $('#slides').removeClass('static-move');
-    $('#slides').addClass('animate');
-    $('#slides').css('transition-property', 'all');
-    $('#slides').css('transform','translateX(-' + slide * slideWidth + 'px)');    
+    currentSlide = 1;
+    // Hack to give browser time to switch slide
+    window.setTimeout(returnAnimationAfterJump, 50);
   }
   
-  function switchRight(slide) {
+  function jumpToEnd() {
+    $('#slides').removeClass('animate');
+    $('#slides').addClass('disable-animation');
+    currentSlide = slideCount - 2;
+    $('#slides').css('transform','translateX(-' + (slideWidth * currentSlide) + 'px)');
+    window.setTimeout(returnAnimationAfterJump, 50);
+  }
+  
+  function returnAnimationAfterJump() {
+    $('#slides').removeClass('disable-animation');
     $('#slides').addClass('animate');
-    $('#slides').css('transform','translateX(' + slide * slideWidth + 'px)');    
+  }
+
+  function switchLeft() {
+    $('#slides').removeClass('disable-animation');
+    $('#slides').addClass('animate');
+    $('#slides').css('transform','translateX(-' + currentSlide * slideWidth + 'px)');
+  }
+  
+  function switchRight() {
+    $('#slides').addClass('animate');
+    $('#slides').css('transform','translateX(' + currentSlide * slideWidth + 'px)');    
   }
 
   init();  
