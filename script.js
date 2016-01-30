@@ -18,11 +18,12 @@ $(window).load(function() {
   var animationDelayID = undefined;
   var autoAnimation = true;
   
-  /** Set initial values.
-  * Make sense to start it when pictures are loaded.
+  /** 
+  * Set initial values.
   */
   function init() {
     slideWidth = $('.slide').width();
+    // Add last slide before first and first before last to seamless and engless transition
     $('#slides .slide:last-child').clone().prependTo('#slides');
     $('#slides .slide:nth-child(2)').clone().appendTo('#slides');
     
@@ -32,25 +33,26 @@ $(window).load(function() {
     setTimingFunction('ease-out');
     setTransitionProperty('all');
     
-    $('#slides').on('mousedown touchstart', slideStart);
-    $('html').on('mouseup touchend', slideEnd);
-    $('html').on('mousemove touchmove', slide);
+    // Add event handlers to react when user swipe.
+    $('#slides').on('mousedown touchstart', swipeStart);
+    $('html').on('mouseup touchend', swipeEnd);
+    $('html').on('mousemove touchmove', swipe);
     
-    // Move slides to make it look like first slide selected
+    // Jump to slide 1 (since another slide was added to the beginning of row);
     jumpToSlide(1);
     
     startAutoPlay();
   }
   
   /**
-  / Triggers when slide event started
+  * Triggers when user starts swipe.
+  * @param event browser event object
   */
-  function slideStart(event) {
+  function swipeStart(event) {
     if(!allowSwipe) {
       return;
     }
     
-    //autoAnimation = false;
     disableAutoPlay();
     // If it is mobile device redefine event to first touch point
     if (event.originalEvent.touches)
@@ -63,9 +65,10 @@ $(window).load(function() {
     }
   }
   
-  /** Occurs when image is being slid.
+  /** Triggers when user continues swipe.
+  * @param event browser event object
   */
-  function slide(event) {
+  function swipe(event) {
     event.preventDefault();
     if (event.originalEvent.touches)
       event = event.originalEvent.touches[0];
@@ -98,9 +101,10 @@ $(window).load(function() {
     }
   }
   
-  /** When user release pointer finish slide moving.
+  /** Triggers when user finishes swipe.
+  * @param event browser event object
   */
-  function slideEnd(event) {
+  function swipeEnd(event) {
     if (sliding == 2){
       // Reset sliding state.
       sliding = 0;
@@ -131,27 +135,42 @@ $(window).load(function() {
     }
   } 
   
+  /** 
+  * Disables reaction on swipe while transition effect is playing.
+  */
   function disableSwipe() {
     allowSwipe = false;
     window.setTimeout(enableSwipe, transitionDuration)
   }
   
+  /** 
+  * Enables reaction on swipe.
+  */
   function enableSwipe() {
     allowSwipe = true;
   }
   
+  /**
+  * Disables autoplay function.
+  * Used while swiping.
+  */
   function disableAutoPlay() {
     autoAnimation = false;
     window.clearTimeout(animationDelayID);
   }
   
-  // ToDo: Start animation with slight delay for autoplay, wait to finish translate;
+  /**
+  * Launches autoPlay function with delay.
+  */
   function startAutoPlay() {
     if(autoAnimation){
       animationDelayID = window.setTimeout(autoPlay, autoPlayTimeout);
     }
   }
   
+  /**
+  * Switches between slides in autoplay mode.
+  */
   function autoPlay() {
     currentSlide += 1;
     switchForward();
@@ -164,43 +183,58 @@ $(window).load(function() {
     startAutoPlay();
   }
   
-  function jumpToStart() {
-    enableTransition(false);
-    translateX(-slideWidth);
-    currentSlide = 1;
-    // Hack to give browser time to switch slide
-    window.setTimeout(returnAnimationAfterJump, 50);
-  }
-  
-  function jumpToSlide(slideNumber){
-    enableTransition(false);
-    currentSlide = slideNumber;
-    translateX(-slideWidth * currentSlide);
-    window.setTimeout(returnAnimationAfterJump, 50);
-  }
-  
-  function jumpToEnd() {
-    enableTransition(false);
-    currentSlide = slideCount - 2;
-    translateX(-slideWidth * currentSlide);
-    window.setTimeout(returnAnimationAfterJump, 50);
-  }
-  
-  function returnAnimationAfterJump() {
-    enableTransition(true);
-  }
-
+  /**
+  * Switches slideshow one slide forward.
+  */
   function switchForward() {
     enableTransition(true);
     translateX(-currentSlide * slideWidth);
   }
   
+  /**
+  * Switches slideshow one slide backward.
+  */
   function switchBackward() {
     enableTransition(true);
     translateX(currentSlide * slideWidth); 
   }
   
-  /** Enables or disables transition
+  /**
+  * Switches slideshow to the first slide.
+  * Remark: the first slide from html elements, not the slide that was added for smooth transition effect.
+  */
+  function jumpToStart() {
+    jumpToSlide(1);
+  }
+  
+  /**
+  * Switches slideshow to exact slide number.
+  * Remark: respecting two slides that were added for smooth transaction effect.
+  */
+  function jumpToSlide(slideNumber){
+    enableTransition(false);
+    currentSlide = slideNumber;
+    translateX(-slideWidth * currentSlide);
+    window.setTimeout(returnTransitionAfterJump, 50);
+  }
+  
+  /**
+  * Switches slideshow to the last slide.
+  * Remark: the last slide from html elements, not the slide that was added for smooth transition effect.
+  */
+  function jumpToEnd() {
+    jumpToSlide(slideCount - 2);
+  }
+  
+  /**
+  * Returns transition effect after jumpToSlide function call.
+  */
+  function returnTransitionAfterJump() {
+    enableTransition(true);
+  }
+  
+  /** 
+  * Enables or disables transition
   * @param {bool} true to enable traintion.
   */
   function enableTransition(enable) {
@@ -211,27 +245,43 @@ $(window).load(function() {
     }
   }
   
-  // Translates slides on certain amount.
-  function translateX(width){
-    $('#slides').css('-webkit-transform','translateX(' + width + 'px)')
-      .css('-ms-transform','translateX(' + width + 'px)')
-      .css('transform','translateX(' + width + 'px)');
+  /**
+  * Translates slides on certain amount.
+  * @param distance {Number} distance of transition. If negative, transition from right to left.
+  */
+  function translateX(distance){
+    $('#slides')
+    // Prefixes are being set automatically.
+//      .css('-webkit-transform','translateX(' + distance + 'px)')
+//      .css('-ms-transform','translateX(' + distance + 'px)')
+      .css('transform','translateX(' + distance + 'px)');
   }
   
-  // Sets duration of transition between slides
+  /**
+  * Sets duration of transition between slides.
+  * @param duration {Number} amount in milliseconds.
+  */
   function setTransitionDuration(duration){
-    $('#slides').css('-webkit-transition-duration', duration + 'ms')
+    $('#slides')
+//      .css('-webkit-transition-duration', duration + 'ms')
       .css('transition-duration', duration + 'ms');
   }
   
+  /**
+  * Sets transition function.
+  */
   function setTimingFunction(functionDescription){
-    $('#slides').css('-webkit-transition-timing-function', functionDescription)
+    $('#slides')
+//      .css('-webkit-transition-timing-function', functionDescription)
       .css('transition-timing-function', functionDescription);
   }
   
-  // Used to disable or enable animation
+  /**
+  * Sets property that will be used in transition effect.
+  */
   function setTransitionProperty(property){
-    $('#slides').css('-webkit-transition-property', property)
+    $('#slides')
+//      .css('-webkit-transition-property', property)
       .css('transition-property', property);
   }
   
