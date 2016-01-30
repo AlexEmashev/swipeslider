@@ -43,15 +43,4 @@ body {
   background-position: center;
   background-color: #cccccc; }
 
-/* line 46, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.animate {
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: ease-out; }
-
-/* line 52, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.disable-animation {
-  transition-property: none;
-  transition-duration: 0; }
-
 /*# sourceMappingURL=style.css.map */

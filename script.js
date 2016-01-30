@@ -14,13 +14,9 @@ $(window).load(function() {
   // Swipe should be disabled while transition animation is playing.
   var allowSwipe = true;
   var transitionDuration = 500;
-  var autoPlayTimeout = 2000;
+  var autoPlayTimeout = 3000;
   var animationDelayID = undefined;
   var autoAnimation = true;
-  
-  $('#slides').on('mousedown touchstart', slideStart);
-  $('html').on('mouseup touchend', slideEnd);
-  $('html').on('mousemove touchmove', slide);
   
   /** Set initial values.
   * Make sense to start it when pictures are loaded.
@@ -31,8 +27,17 @@ $(window).load(function() {
     $('#slides .slide:nth-child(2)').clone().appendTo('#slides');
     
     slideCount = $('.slide').length;
-    currentSlide = 0;
     transitionDuration = 500;
+    setTransitionDuration(transitionDuration);
+    setTimingFunction('ease-out');
+    setTransitionProperty('all');
+    
+    $('#slides').on('mousedown touchstart', slideStart);
+    $('html').on('mouseup touchend', slideEnd);
+    $('html').on('mousemove touchmove', slide);
+    
+    // Move slides to make it look like first slide selected
+    jumpToSlide(1);
     
     startAutoPlay();
   }
@@ -73,7 +78,6 @@ $(window).load(function() {
       sliding = 2; // Set status to 'actually moving'
       startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
     }
-    //ToDo: first slide switches weird
     
     //  When user move image
     if (sliding == 2) {
@@ -88,9 +92,9 @@ $(window).load(function() {
       
       // How far to translate slide while dragging.
       pixelOffset = startPixelOffset + deltaSlide / touchPixelRatio;
+      enableTransition(false);
       // Apply moving and remove animation class
-      $('#slides').css('transform', 'translateX(' + pixelOffset + 'px').removeClass('animate');
-      
+      translateX(pixelOffset);
     }
   }
   
@@ -103,18 +107,7 @@ $(window).load(function() {
             
       // Calculate which slide need to be in view.
       currentSlide = pixelOffset < startPixelOffset ? currentSlide + 1 : currentSlide -1;
-            
-      // If last slide jump to first slide.
-      if (currentSlide == slideCount) {
-        jumpToStart();
-        return;
-      }
-      
-      if (currentSlide < 0){
-        jumpToEnd();
-        return;
-      }
-      
+
       // Make sure that unexisting slides weren't selected.
       currentSlide = Math.min(Math.max(currentSlide, 0), slideCount - 1);
       
@@ -122,9 +115,8 @@ $(window).load(function() {
       pixelOffset = currentSlide * -slideWidth;
       
       disableSwipe();
-      
-      $('#slides').addClass('animate');
-      $('#slides').css('transform', 'translateX(' + pixelOffset + 'px)');
+      enableTransition(true);
+      translateX(pixelOffset);
       
       // If this is the last slide, then wait animation is over
       // and jump to first.
@@ -133,12 +125,9 @@ $(window).load(function() {
       } else if (currentSlide == 0) {
         window.setTimeout(jumpToEnd, transitionDuration);        
       }
-      else {
-        autoAnimation = true;
-        startAutoPlay();
-      }
       
-
+      autoAnimation = true;
+      startAutoPlay();
     }
   } 
   
@@ -165,7 +154,7 @@ $(window).load(function() {
   
   function autoPlay() {
     currentSlide += 1;
-    switchLeft();
+    switchForward();
 
     // If switched to last slide, wait until animation is over and jump to the second.
     if (currentSlide == slideCount - 1) {
@@ -176,37 +165,75 @@ $(window).load(function() {
   }
   
   function jumpToStart() {
-    $('#slides').removeClass('animate');
-    $('#slides').addClass('disable-animation');
-    $('#slides').css('transform','translateX(-' + slideWidth + 'px)');  
+    enableTransition(false);
+    translateX(-slideWidth);
     currentSlide = 1;
     // Hack to give browser time to switch slide
     window.setTimeout(returnAnimationAfterJump, 50);
   }
   
+  function jumpToSlide(slideNumber){
+    enableTransition(false);
+    currentSlide = slideNumber;
+    translateX(-slideWidth * currentSlide);
+    window.setTimeout(returnAnimationAfterJump, 50);
+  }
+  
   function jumpToEnd() {
-    $('#slides').removeClass('animate');
-    $('#slides').addClass('disable-animation');
+    enableTransition(false);
     currentSlide = slideCount - 2;
-    $('#slides').css('transform','translateX(-' + (slideWidth * currentSlide) + 'px)');
+    translateX(-slideWidth * currentSlide);
     window.setTimeout(returnAnimationAfterJump, 50);
   }
   
   function returnAnimationAfterJump() {
-    $('#slides').removeClass('disable-animation');
-    $('#slides').addClass('animate');
+    enableTransition(true);
   }
 
-  function switchLeft() {
-    $('#slides').removeClass('disable-animation');
-    $('#slides').addClass('animate');
-    $('#slides').css('transform','translateX(-' + currentSlide * slideWidth + 'px)');
+  function switchForward() {
+    enableTransition(true);
+    translateX(-currentSlide * slideWidth);
   }
   
-  function switchRight() {
-    $('#slides').addClass('animate');
-    $('#slides').css('transform','translateX(' + currentSlide * slideWidth + 'px)');    
+  function switchBackward() {
+    enableTransition(true);
+    translateX(currentSlide * slideWidth); 
   }
-
+  
+  /** Enables or disables transition
+  * @param {bool} true to enable traintion.
+  */
+  function enableTransition(enable) {
+    if (enable) {
+      setTransitionProperty('all');
+    } else {
+      setTransitionProperty('none');
+    }
+  }
+  
+  // Translates slides on certain amount.
+  function translateX(width){
+    $('#slides').css('-webkit-transform','translateX(' + width + 'px)')
+      .css('-ms-transform','translateX(' + width + 'px)')
+      .css('transform','translateX(' + width + 'px)');
+  }
+  
+  // Sets duration of transition between slides
+  function setTransitionDuration(duration){
+    $('#slides').css('-webkit-transition-duration', duration + 'ms')
+      .css('transition-duration', duration + 'ms');
+  }
+  
+  function setTimingFunction(functionDescription){
+    $('#slides').css('-webkit-transition-timing-function', functionDescription)
+      .css('transition-timing-function', functionDescription);
+  }
+  
+  // Used to disable or enable animation
+  function setTransitionProperty(property){
+    $('#slides').css('-webkit-transition-property', property)
+      .css('transition-property', property);
+  }
+  
   init();  
 });

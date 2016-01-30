@@ -42,14 +42,3 @@ body {
   background-position: center;
   background-color: #cccccc;
 }
-
-.animate {
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: ease-out;
-}
-
-.disable-animation {
-  transition-property: none;
-  transition-duration: 0;
-}
