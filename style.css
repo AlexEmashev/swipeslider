@@ -19,7 +19,7 @@ body {
   width: 500px;
   height: 200px;
   background-color: #404040;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28); }
 
 /* line 25, E:/OneDrive/My Files/webdev/image-slider/style.scss */

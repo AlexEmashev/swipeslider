@@ -10,6 +10,7 @@
       transitionDuration: 500,
       autoPlayTimeout: 3000,
       timingFunction: 'ease-out',
+      prevNextButtons: true
     };
 
     var settings = $.extend(defaultSettings, options);
@@ -29,7 +30,7 @@
     var slideWidth = 0;
     // Swipe should be disabled while transition animation is playing.
     var allowSwipe = true;
-    var transitionDuration = settings.transitionDuration;;
+    var transitionDuration = settings.transitionDuration;
     var autoPlayTimeout = 3000;
     var animationDelayID = undefined;
     var autoAnimation = true;
@@ -39,10 +40,15 @@
     */
     (function init() {
       slideWidth = slider.width();
+      
       // Add last slide before first and first before last to seamless and engless transition
       slider.find('.slide:last-child').clone().prependTo(slider);
       slider.find('.slide:nth-child(2)').clone().appendTo(slider);
       slideCount = slider.find('.slide').length;
+      
+      if(settings.prevNextButtons){
+        insertPrevNextButtons();
+      }
 
       setTransitionDuration(transitionDuration);
       setTimingFunction(settings.timingFunction);
@@ -187,14 +193,7 @@
     * Switches between slides in autoplay mode.
     */
     function autoPlay() {
-      currentSlide += 1;
       switchForward();
-
-      // If switched to last slide, wait until animation is over and jump to the second.
-      if (currentSlide == slideCount - 1) {
-        window.setTimeout(jumpToStart, transitionDuration);
-      }
-
       startAutoPlay();
     }
 
@@ -202,16 +201,28 @@
     * Switches slideshow one slide forward.
     */
     function switchForward() {
+      currentSlide += 1;
+      
       enableTransition(true);
       translateX(-currentSlide * slideWidth);
+      
+      if (currentSlide == slideCount - 1) {
+        window.setTimeout(jumpToStart, transitionDuration);
+      }
     }
 
     /**
     * Switches slideshow one slide backward.
     */
     function switchBackward() {
+      currentSlide -= 1;
+      
       enableTransition(true);
-      translateX(currentSlide * slideWidth); 
+      translateX(-currentSlide * slideWidth); 
+      
+      if (currentSlide == 0) {
+        window.setTimeout(jumpToEnd, transitionDuration);
+      }
     }
 
     /**
@@ -220,6 +231,14 @@
     */
     function jumpToStart() {
       jumpToSlide(1);
+    }
+    
+    /**
+    * Switches slideshow to the last slide.
+    * Remark: the last slide from html elements, not the slide that was added for smooth transition effect.
+    */
+    function jumpToEnd() {
+      jumpToSlide(slideCount - 2);
     }
 
     /**
@@ -231,14 +250,6 @@
       currentSlide = slideNumber;
       translateX(-slideWidth * currentSlide);
       window.setTimeout(returnTransitionAfterJump, 50);
-    }
-
-    /**
-    * Switches slideshow to the last slide.
-    * Remark: the last slide from html elements, not the slide that was added for smooth transition effect.
-    */
-    function jumpToEnd() {
-      jumpToSlide(slideCount - 2);
     }
 
     /**
@@ -298,7 +309,15 @@
       slider
   //      .css('-webkit-transition-property', property)
         .css('transition-property', property);
-    }  
+    }
+    
+    // Slider Controls
+    function insertPrevNextButtons(){
+      slider.after('<a href="#" class="swipslider-prev" id="swipsliderPrev">&lt;</a>');
+      $('#swipsliderPrev').click(switchBackward);
+      slider.after('<a href="#" class="swipslider-next" id="swipsliderNext">&gt;</a>');
+      $('#swipsliderNext').click(switchForward);
+    }
 
     return slider;    
   }
