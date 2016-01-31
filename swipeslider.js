@@ -41,14 +41,16 @@
     (function init() {
       slideWidth = slider.width();
       
+      if(settings.prevNextButtons){
+        insertPrevNextButtons();
+      }
+      
       // Add last slide before first and first before last to seamless and engless transition
       slider.find('.slide:last-child').clone().prependTo(slider);
       slider.find('.slide:nth-child(2)').clone().appendTo(slider);
       slideCount = slider.find('.slide').length;
       
-      if(settings.prevNextButtons){
-        insertPrevNextButtons();
-      }
+      insertBullets(slideCount - 2);
 
       setTransitionDuration(transitionDuration);
       setTimingFunction(settings.timingFunction);
@@ -146,13 +148,16 @@
         // If this is the last slide, then wait animation is over
         // and jump to first.
         if (currentSlide == slideCount - 1){
+          setActiveBullet(1);
           window.setTimeout(jumpToStart, transitionDuration);
         } else if (currentSlide == 0) {
+          setActiveBullet(slideCount -1);
           window.setTimeout(jumpToEnd, transitionDuration);        
+        } else {
+          setActiveBullet(currentSlide);
         }
 
-        autoAnimation = true;
-        startAutoPlay();
+        enableAutoPlay();
       }
     } 
 
@@ -173,11 +178,20 @@
 
     /**
     * Disables autoplay function.
-    * Used while swiping.
+    * Used while performing manual operations.
     */
     function disableAutoPlay() {
       autoAnimation = false;
       window.clearTimeout(animationDelayID);
+    }
+    
+    /**
+    * Enables autoplay function.
+    * Used while performing manual operations.
+    */
+    function enableAutoPlay() {
+      autoAnimation = true;
+      startAutoPlay();
     }
 
     /**
@@ -208,6 +222,9 @@
       
       if (currentSlide == slideCount - 1) {
         window.setTimeout(jumpToStart, transitionDuration);
+      } else {
+        // In case of jump active bullet sets there
+        setActiveBullet(currentSlide);
       }
     }
 
@@ -250,6 +267,7 @@
       currentSlide = slideNumber;
       translateX(-slideWidth * currentSlide);
       window.setTimeout(returnTransitionAfterJump, 50);
+      setActiveBullet(currentSlide);
     }
 
     /**
@@ -311,12 +329,69 @@
         .css('transition-property', property);
     }
     
-    // Slider Controls
+    /**
+    * Next slide and Previous slide buttons.
+    */
     function insertPrevNextButtons(){
-      slider.after('<a href="#" class="swipslider-prev" id="swipsliderPrev">&lt;</a>');
-      $('#swipsliderPrev').click(switchBackward);
-      slider.after('<a href="#" class="swipslider-next" id="swipsliderNext">&gt;</a>');
-      $('#swipsliderNext').click(switchForward);
+      slider.after('<a href="#" class="swipslider-prev">&lt;</a>');
+      slider.parent().find('.swipslider-prev').click(function(){
+        disableAutoPlay();
+        switchBackward();
+        enableAutoPlay();
+      });
+      slider.after('<a href="#" class="swipslider-next">&gt;</a>');
+      slider.parent().find('.swipslider-next').click(function(){
+        disableAutoPlay();
+        switchForward();
+        enableAutoPlay();
+        });
+    }
+    
+    /**
+    * Add bullet indicator of current slide.
+    */
+    function insertBullets(count){
+      slider.after('<ul class="swipslider-bullet"></ul>');
+      var bulletList = slider.parent().find('.swipslider-bullet');
+      for (var i = 0; i < count; i++){
+       
+        if (i == 0){
+          bulletList.append('<li class="slide-' + i + ' active"></li>');
+        } else {
+          bulletList.append('<li class="slide-' + i + '"></li>');
+        }
+        
+        var item = slider.parent().find('.slide-' + i);
+        
+        // Workaround a problem when iterator i will have max value due to closure nature.
+        (function(lockedIndex){
+          item.click(function() {
+            // Disable autoplay on time of transition.
+            disableAutoPlay();
+            currentSlide = lockedIndex + 1;
+            setActiveBullet(currentSlide);
+            translateX(-currentSlide * slideWidth);
+            enableAutoPlay();
+          });
+        })(i);
+      }
+    }
+    
+    /**
+    * Sets active bullet mark of active slide.
+    * @param number {Number} active slide with respect of two added slides. 
+    */
+    function setActiveBullet(number){
+      if(number == 0){
+        number = 1;
+      } else if (number == slideCount - 1){
+        number = slideCount - 1;
+      } else {
+        number = number - 1;
+      }
+      
+      slider.parent().find('.swipslider-bullet').find('li').removeClass('active');
+      slider.parent().find('.slide-' + number).addClass('active');
     }
 
     return slider;    
