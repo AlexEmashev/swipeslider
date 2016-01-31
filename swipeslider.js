@@ -5,7 +5,8 @@
 (function($) {
   
   $.fn.swipeslider = function(options) {
-    var slider = this; // reference to slider
+    var slideContainer = this;
+    var slider = this.find('.slides'); // reference to slider
     var defaultSettings = {
       transitionDuration: 500,
       autoPlayTimeout: 3000,
@@ -322,13 +323,13 @@
     */
     function insertPrevNextButtons(){
       slider.after('<a href="#" class="swipslider-prev">&lt;</a>');
-      slider.parent().find('.swipslider-prev').click(function(){
+      slideContainer.find('.swipslider-prev').click(function(){
         disableAutoPlay();
         switchBackward();
         enableAutoPlay();
       });
       slider.after('<a href="#" class="swipslider-next">&gt;</a>');
-      slider.parent().find('.swipslider-next').click(function(){
+      slideContainer.find('.swipslider-next').click(function(){
         disableAutoPlay();
         switchForward();
         enableAutoPlay();
@@ -349,7 +350,7 @@
           bulletList.append('<li class="slide-' + i + '"></li>');
         }
         
-        var item = slider.parent().find('.slide-' + i);
+        var item = slideContainer.find('.slide-' + i);
         
         // Workaround a problem when iterator i will have max value due to closure nature.
         (function(lockedIndex){
@@ -379,10 +380,10 @@
         activeBullet = number - 1;
       }
       
-      slider.parent().find('.swipslider-bullet').find('li').removeClass('active');
-      slider.parent().find('.slide-' + activeBullet).addClass('active');
+      slideContainer.find('.swipslider-bullet').find('li').removeClass('active');
+      slideContainer.find('.slide-' + activeBullet).addClass('active');
     }
 
-    return slider;    
+    return slideContainer;    
   }
 }(jQuery));
