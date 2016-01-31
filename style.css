@@ -1,28 +1,36 @@
 /* line 1, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: sans-serif; }
 
-/* line 5, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 6, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 html, body {
   height: 100%; }
 
-/* line 9, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 10, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 body {
   margin: 0;
   overflow: hidden;
   background-color: #383843; }
 
 /* line 15, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+h1 {
+  text-align: center;
+  color: aliceblue;
+  text-shadow: 1px 2px 5px black;
+  font-size: 50px; }
+
+/* line 22, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 #slider-container {
-  margin: 150px auto 0;
+  margin: 50px auto 0;
   position: relative;
   width: 500px;
   height: 200px;
   background-color: #404040;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28); }
 
-/* line 25, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 32, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 #slides {
   width: 100%;
   height: 100%;
@@ -31,7 +39,7 @@ body {
   transform: translateX(0);
   position: relative; }
 
-/* line 34, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 41, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .slide {
   font-size: 60px;
   padding-top: 55px;
@@ -46,7 +54,7 @@ body {
   background-position: center;
   background-color: #cccccc; }
 
-/* line 54, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 61, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider-next, .swipslider-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -65,22 +73,22 @@ body {
   text-decoration: none;
   transition: all 0.2s ease-out;
   -webkit-transition: all 0.2s ease-out; }
-  /* line 73, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 80, E:/OneDrive/My Files/webdev/image-slider/style.scss */
   .swipslider-next:hover, .swipslider-prev:hover {
     background-color: rgba(255, 255, 255, 0.74); }
-  /* line 77, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 84, E:/OneDrive/My Files/webdev/image-slider/style.scss */
   .swipslider-next:active, .swipslider-prev:active {
     background-color: rgba(255, 255, 255, 0.5); }
 
-/* line 82, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 89, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider-prev {
   left: 2%; }
 
-/* line 86, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 93, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider-next {
   right: 2%; }
 
-/* line 90, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 97, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider-bullet {
   position: absolute;
   bottom: 2%;
@@ -90,7 +98,7 @@ body {
   text-align: center;
   padding: 0;
   margin: 0; }
-  /* line 99, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 106, E:/OneDrive/My Files/webdev/image-slider/style.scss */
   .swipslider-bullet li {
     width: 10px;
     height: 10px;
@@ -100,13 +108,13 @@ body {
     cursor: pointer;
     transition: all 0.2s ease-out;
     -webkit-transition: all 0.2s ease-out; }
-    /* line 109, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 116, E:/OneDrive/My Files/webdev/image-slider/style.scss */
     .swipslider-bullet li:not(:last-child) {
       margin-right: 5px; }
-    /* line 113, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 120, E:/OneDrive/My Files/webdev/image-slider/style.scss */
     .swipslider-bullet li:hover {
       background-color: rgba(255, 255, 255, 0.74); }
-    /* line 117, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 124, E:/OneDrive/My Files/webdev/image-slider/style.scss */
     .swipslider-bullet li.active {
       background-color: rgba(255, 255, 255, 0.5); }
 

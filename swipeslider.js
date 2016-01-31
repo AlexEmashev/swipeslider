@@ -10,7 +10,8 @@
       transitionDuration: 500,
       autoPlayTimeout: 3000,
       timingFunction: 'ease-out',
-      prevNextButtons: true
+      prevNextButtons: true,
+      bullets: true
     };
 
     var settings = $.extend(defaultSettings, options);
@@ -21,7 +22,7 @@
     /* 1 - sliding started
     /* 2 - slide released
     */
-    var sliding = 0;
+    var sladingState = 0;
     var startClientX = 0;
     var startPixelOffset = 0;
     var pixelOffset = 0;
@@ -50,7 +51,9 @@
       slider.find('.slide:nth-child(2)').clone().appendTo(slider);
       slideCount = slider.find('.slide').length;
       
-      insertBullets(slideCount - 2);
+      if(settings.bullets){
+        insertBullets(slideCount - 2);
+      }
 
       setTransitionDuration(transitionDuration);
       setTimingFunction(settings.timingFunction);
@@ -82,8 +85,8 @@
         event = event.originalEvent.touches[0];
 
       // Check if slide started on slider 
-      if (sliding == 0){
-        sliding = 1; // Status 1 = slide started.
+      if (sladingState == 0){
+        sladingState = 1; // Status 1 = slide started.
         startClientX = event.clientX;
       }
     }
@@ -100,13 +103,13 @@
       var deltaSlide = event.clientX - startClientX;
 
       // If sliding started first time and there was a distance.
-      if (sliding == 1 && deltaSlide != 0) {
-        sliding = 2; // Set status to 'actually moving'
+      if (sladingState == 1 && deltaSlide != 0) {
+        sladingState = 2; // Set status to 'actually moving'
         startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
       }
 
       //  When user move image
-      if (sliding == 2) {
+      if (sladingState == 2) {
         // Means that user slide 1 pixel for every 1 pixel of mouse movement.
         var touchPixelRatio = 1;
         // Check for user doesn't slide out of boundaries
@@ -128,9 +131,9 @@
     * @param event browser event object
     */
     function swipeEnd(event) {
-      if (sliding == 2){
+      if (sladingState == 2){
         // Reset sliding state.
-        sliding = 0;
+        sladingState = 0;
 
         // Calculate which slide need to be in view.
         currentSlide = pixelOffset < startPixelOffset ? currentSlide + 1 : currentSlide -1;
@@ -142,21 +145,7 @@
         pixelOffset = currentSlide * -slideWidth;
 
         disableSwipe();
-        enableTransition(true);
-        translateX(pixelOffset);
-
-        // If this is the last slide, then wait animation is over
-        // and jump to first.
-        if (currentSlide == slideCount - 1){
-          setActiveBullet(1);
-          window.setTimeout(jumpToStart, transitionDuration);
-        } else if (currentSlide == 0) {
-          setActiveBullet(slideCount -1);
-          window.setTimeout(jumpToEnd, transitionDuration);        
-        } else {
-          setActiveBullet(currentSlide);
-        }
-
+        switchSlide();
         enableAutoPlay();
       }
     } 
@@ -216,16 +205,7 @@
     */
     function switchForward() {
       currentSlide += 1;
-      
-      enableTransition(true);
-      translateX(-currentSlide * slideWidth);
-      
-      if (currentSlide == slideCount - 1) {
-        window.setTimeout(jumpToStart, transitionDuration);
-      } else {
-        // In case of jump active bullet sets there
-        setActiveBullet(currentSlide);
-      }
+      switchSlide();
     }
 
     /**
@@ -233,13 +213,22 @@
     */
     function switchBackward() {
       currentSlide -= 1;
-      
+      switchSlide();
+    }
+    
+    /**
+    * Switches slideshow to currentSlide.
+    */
+    function switchSlide() {
       enableTransition(true);
-      translateX(-currentSlide * slideWidth); 
+      translateX(-currentSlide * slideWidth);
       
-      if (currentSlide == 0) {
+      if(currentSlide == 0) {
         window.setTimeout(jumpToEnd, transitionDuration);
+      } else if (currentSlide == slideCount - 1) {
+        window.setTimeout(jumpToStart, transitionDuration);
       }
+      setActiveBullet(currentSlide);
     }
 
     /**
@@ -267,7 +256,6 @@
       currentSlide = slideNumber;
       translateX(-slideWidth * currentSlide);
       window.setTimeout(returnTransitionAfterJump, 50);
-      setActiveBullet(currentSlide);
     }
 
     /**
@@ -369,8 +357,7 @@
             // Disable autoplay on time of transition.
             disableAutoPlay();
             currentSlide = lockedIndex + 1;
-            setActiveBullet(currentSlide);
-            translateX(-currentSlide * slideWidth);
+            switchSlide();
             enableAutoPlay();
           });
         })(i);
@@ -382,16 +369,18 @@
     * @param number {Number} active slide with respect of two added slides. 
     */
     function setActiveBullet(number){
+      var activeBullet = 0;
+      
       if(number == 0){
-        number = 1;
+        activeBullet = slideCount - 3;
       } else if (number == slideCount - 1){
-        number = slideCount - 1;
+        activeBullet = 0;
       } else {
-        number = number - 1;
+        activeBullet = number - 1;
       }
       
       slider.parent().find('.swipslider-bullet').find('li').removeClass('active');
-      slider.parent().find('.slide-' + number).addClass('active');
+      slider.parent().find('.slide-' + activeBullet).addClass('active');
     }
 
     return slider;    
