@@ -9,16 +9,17 @@ html, body {
 body {
   margin: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #383843;
 }
 
 #slider-container {
   margin: 150px auto 0;
+  position: relative;
   width: 500px;
   height: 200px;
   background-color: #404040;
   overflow: hidden;
-  border: 2px solid #965d5d;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
 }
 
 #slides {
@@ -27,12 +28,14 @@ body {
   white-space: nowrap;
   font-size: 0;
   transform: translateX(0);
+  position: relative;
 }
 
 .slide {
   font-size: 60px;
   padding-top: 55px;
-  color: #d4d4d4;
+  color: rgb(212, 212, 212);
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.23);
   font-family: sans-serif;
   text-align: center;
   width: 100%;
@@ -41,4 +44,78 @@ body {
   background-size: cover;
   background-position: center;
   background-color: #cccccc;
+}
+
+$control-bg-color: rgba(255, 255, 255, 0);
+$control-bg-color-hover: rgba(255, 255, 255, 0.74);
+$control-bg-color-active: rgba(255, 255, 255, 0.5);
+$control-color: rgba(144, 144, 144, 0.65);
+
+.swipslider-next, .swipslider-prev {
+  font-family: "Courier New", Courier, monospace;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  line-height: 50px;
+  font-size: 30px;
+  font-weight: bolder;
+  color: $control-color;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $control-bg-color;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+  
+  &:hover {
+    background-color: $control-bg-color-hover;
+  }
+  
+  &:active {
+    background-color: $control-bg-color-active;
+  }
+}
+
+.swipslider-prev {
+  left: 2%;
+}
+
+.swipslider-next {
+  right: 2%;
+}
+
+.swipslider-bullet {
+  position: absolute;
+  bottom: 2%;
+  list-style: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  li {
+    width: 10px;
+    height: 10px;
+    background-color: $control-color;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all .2s ease-out;
+    -webkit-transition: all .2s ease-out;
+    
+    &:not(:last-child){
+      margin-right: 5px;
+    }
+    
+    &:hover {
+      background-color: $control-bg-color-hover;
+    }
+    
+    &.active {
+      background-color: $control-bg-color-active;
+    }
+  }
 }

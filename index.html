@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <title>Image Slider With Drag Function</title>
   <link rel="stylesheet" href="style.css">
+  <script src="jquery.min.js"></script>
+  <script src="swipeslider.js"></script>
+    <script>
+    $(window).load(function(){
+      $('#slides').swipeslider();
+    });
+    </script>
 </head>
 <body>
-<div id="slider-container"> 
+<div id="slider-container">
   <div id="slides">
     <div class="slide" style="background-color: #53c780">
       <span>1</span>
@@ -24,8 +31,15 @@
       <span>5</span>
     </div>
   </div>
+  <ul class="swipslider-bullet">
+  <li></li>
+  <li class="active"></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  </ul>
+  <a href="#" class="swipslider-prev">&lt;</a>
+  <a href="#" class="swipslider-next">&gt;</a>
 </div>
-<script src="jquery.min.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
