@@ -1,53 +1,178 @@
-/* line 1, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 1, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 * {
   box-sizing: border-box;
   font-family: sans-serif; }
 
-/* line 6, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 6, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 html, body {
   height: 100%; }
 
-/* line 10, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 10, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 body {
   margin: 0 auto;
   background-color: #383843;
   max-width: 650px;
   color: #fff8eb; }
 
-/* line 16, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 16, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: #fff9f0;
   text-shadow: 1px 2px 5px black; }
 
-/* line 21, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 21, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 h1 {
   font-size: 50px; }
 
-/* line 25, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 25, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+h2 {
+  margin-top: 80px; }
+
+/* line 29, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider {
   margin: 50px auto 0;
-  width: 500px;
-  height: 200px;
   background-color: #404040;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28); }
 
-/* line 33, D:/OneDrive/My Files/webdev/image-slider/style.scss */
-.slide {
-  font-size: 60px;
-  padding-top: 55px;
-  color: #d4d4d4;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.23);
-  font-family: sans-serif;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-color: #cccccc; }
+/* line 36, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+#full_feature {
+  width: 640px;
+  height: 256px; }
 
-/* line 45, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 41, E:/OneDrive/My Files/webdev/image-slider/style.scss */
 #content_slider {
-  width: 100%;
-  min-width: 100px;
-  height: 150px; }
+  width: 640px;
+  background-color: #f0f0f0; }
+  /* line 45, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  #content_slider .wanted {
+    padding: 25px; }
+    /* line 47, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #content_slider .wanted:after {
+      display: table;
+      content: "";
+      clear: both; }
+    /* line 53, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #content_slider .wanted img {
+      float: left;
+      position: relative;
+      height: 225px;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.33);
+      margin-right: 15px; }
+    /* line 61, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #content_slider .wanted .description {
+      float: left;
+      padding: 10px;
+      display: block;
+      font-size: 16px;
+      color: #343332;
+      background: #e5e5e5;
+      height: 225px;
+      width: 349px;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.58);
+      white-space: normal; }
+      /* line 73, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description h1 {
+        font-size: 18px;
+        margin: 0;
+        text-align: left;
+        color: #515f6c;
+        text-shadow: none; }
+      /* line 81, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description::after {
+        display: table;
+        content: "";
+        clear: both; }
+      /* line 87, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description p {
+        margin-bottom: 1px;
+        margin-top: 6px;
+        font-size: 14px; }
+      /* line 93, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description p.award {
+        color: #be9a02; }
+      /* line 97, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description ul {
+        list-style: square;
+        padding-left: 20px;
+        font-size: 14px; }
+      /* line 103, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #content_slider .wanted .description strong {
+        color: #515f6c; }
+
+/* line 112, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+#responsiveness {
+  height: 400px;
+  background-color: #242424; }
+
+/* line 117, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+#customizability {
+  height: 200px; }
+  /* line 120, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  #customizability .swipslider-next-prev {
+    width: 120px;
+    height: 60px;
+    background-color: rgba(82, 82, 82, 0);
+    color: rgba(255, 254, 235, 0.28);
+    border-radius: 3px;
+    font-size: 25px; }
+    /* line 128, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #customizability .swipslider-next-prev:hover {
+      color: #fffeeb;
+      background-color: #525252;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.57); }
+  /* line 135, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  #customizability .swipslider-prev {
+    left: 0%; }
+    /* line 138, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #customizability .swipslider-prev::after {
+      line-height: 60px;
+      content: '< back'; }
+  /* line 144, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  #customizability .swipslider-next {
+    right: 0%; }
+    /* line 147, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #customizability .swipslider-next::after {
+      line-height: 60px;
+      content: 'next >'; }
+  /* line 153, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  #customizability .swipslider-bullet {
+    top: 4%; }
+    /* line 156, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    #customizability .swipslider-bullet li {
+      width: 10px;
+      height: 5px;
+      background-color: rgba(255, 254, 235, 0.28);
+      border-radius: 0;
+      vertical-align: middle; }
+      /* line 163, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #customizability .swipslider-bullet li.active {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #fffeeb;
+        background-color: transparent;
+        width: 0;
+        height: 0;
+        vertical-align: bottom; }
+      /* line 174, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      #customizability .swipslider-bullet li:hover {
+        height: 10px;
+        background-color: #fffeeb; }
+
+/* line 183, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+.slide-number {
+  font-size: 60px;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.54); }
+
+/* line 194, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #7d7e76; }
 
 /*# sourceMappingURL=style.css.map */
