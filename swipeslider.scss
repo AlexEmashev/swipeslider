@@ -87,10 +87,16 @@ $control-color: rgba(160, 160, 160, 0.53);
 
 .swipslider-prev {
   left: 2%;
+  &::after{
+    content: '<';
+  }
 }
 
 .swipslider-next {
   right: 2%;
+  &::after {
+    content: '>';
+  }
 }
 
 .swipslider-bullet {

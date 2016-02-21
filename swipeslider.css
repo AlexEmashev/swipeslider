@@ -76,12 +76,18 @@
 /* line 88, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
 .swipslider-prev {
   left: 2%; }
+  /* line 90, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+  .swipslider-prev::after {
+    content: '<'; }
 
-/* line 92, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+/* line 95, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
 .swipslider-next {
   right: 2%; }
+  /* line 97, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+  .swipslider-next::after {
+    content: '>'; }
 
-/* line 96, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+/* line 102, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
 .swipslider-bullet {
   position: absolute;
   bottom: 2%;
@@ -91,7 +97,7 @@
   text-align: center;
   padding: 0;
   margin: 0; }
-  /* line 105, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+  /* line 111, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
   .swipslider-bullet li {
     width: 10px;
     height: 10px;
@@ -101,14 +107,14 @@
     cursor: pointer;
     transition: all 0.2s ease-out;
     -webkit-transition: all 0.2s ease-out; }
-    /* line 115, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+    /* line 121, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
     .swipslider-bullet li:hover {
       background-color: rgba(255, 255, 255, 0.74); }
-    /* line 119, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+    /* line 125, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
     .swipslider-bullet li.active {
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 2px rgba(160, 160, 160, 0.53); }
-    /* line 124, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
+    /* line 130, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
     .swipslider-bullet li:not(:last-child) {
       margin-right: 5px; }
 

@@ -60,7 +60,7 @@
     var autoPlayTimeout = settings.autoPlayTimeout;
     // ID of timeout function that waits for animation to end.
     var animationDelayID = undefined;
-    var autoAnimation = true;
+    var allowSlideSwitch = true;
     var autoPlay = settings.autoPlay;
 
     /** 
@@ -209,7 +209,7 @@
     * Used while performing manual operations.
     */
     function disableAutoPlay() {
-      autoAnimation = false;
+      allowSlideSwitch = false;
       window.clearTimeout(animationDelayID);
     }
     
@@ -219,7 +219,7 @@
     */
     function enableAutoPlay() {
       if(autoPlay) {
-        autoAnimation = true;
+        allowSlideSwitch = true;
         startAutoPlay();
       }
     }
@@ -228,7 +228,7 @@
     * Launches autoPlay function with delay.
     */
     function startAutoPlay() {
-      if(autoAnimation) {
+      if(allowSlideSwitch) {
         animationDelayID = window.setTimeout(performAutoPlay, autoPlayTimeout);
       }
     }
@@ -362,17 +362,21 @@
     * Next slide and Previous slide buttons.
     */
     function insertPrevNextButtons() {
-      slider.after('<span class="swipslider-next-prev swipslider-prev">&lt;</span>');
+      slider.after('<span class="swipslider-next-prev swipslider-prev"></span>');
       slideContainer.find('.swipslider-prev').click(function(){
-        disableAutoPlay();
-        switchBackward();
-        enableAutoPlay();
+        if(allowSlideSwitch){
+          disableAutoPlay();
+          switchBackward();
+          enableAutoPlay();
+        }
       });
-      slider.after('<span class="swipslider-next-prev swipslider-next">&gt;</span>');
+      slider.after('<span class="swipslider-next-prev swipslider-next"></span>');
       slideContainer.find('.swipslider-next').click(function(){
-        disableAutoPlay();
-        switchForward();
-        enableAutoPlay();
+        if(allowSlideSwitch) {
+          disableAutoPlay();
+          switchForward();
+          enableAutoPlay();
+        }
         });
     }
     
