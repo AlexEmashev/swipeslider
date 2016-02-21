@@ -60,7 +60,8 @@
     var autoPlayTimeout = settings.autoPlayTimeout;
     // ID of timeout function that waits for animation to end.
     var animationDelayID = undefined;
-    var autoAnimation = settings.autoPlay;
+    var autoAnimation = true;
+    var autoPlay = settings.autoPlay;
 
     /** 
     * Set initial values.
@@ -102,7 +103,7 @@
       // Jump to slide 1 (since another slide was added to the beginning of row);
       jumpToSlide(1);
 
-      startAutoPlay();
+      enableAutoPlay();
     })();
 
     /**
@@ -214,26 +215,28 @@
     
     /**
     * Enables autoplay function.
-    * Used while performing manual operations.
+    * Used to prevent auto play when user performs manual switching.
     */
     function enableAutoPlay() {
-      autoAnimation = true;
-      startAutoPlay();
+      if(autoPlay) {
+        autoAnimation = true;
+        startAutoPlay();
+      }
     }
 
     /**
     * Launches autoPlay function with delay.
     */
     function startAutoPlay() {
-      if(autoAnimation){
-        animationDelayID = window.setTimeout(autoPlay, autoPlayTimeout);
+      if(autoAnimation) {
+        animationDelayID = window.setTimeout(performAutoPlay, autoPlayTimeout);
       }
     }
 
     /**
     * Switches between slides in autoplay mode.
     */
-    function autoPlay() {
+    function performAutoPlay() {
       switchForward();
       startAutoPlay();
     }
@@ -359,13 +362,13 @@
     * Next slide and Previous slide buttons.
     */
     function insertPrevNextButtons() {
-      slider.after('<a href="#" class="swipslider-prev">&lt;</a>');
+      slider.after('<span class="swipslider-next-prev swipslider-prev">&lt;</span>');
       slideContainer.find('.swipslider-prev').click(function(){
         disableAutoPlay();
         switchBackward();
         enableAutoPlay();
       });
-      slider.after('<a href="#" class="swipslider-next">&gt;</a>');
+      slider.after('<span class="swipslider-next-prev swipslider-next">&gt;</span>');
       slideContainer.find('.swipslider-next').click(function(){
         disableAutoPlay();
         switchForward();
