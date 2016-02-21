@@ -8,125 +8,42 @@ html, body {
 }
 
 body {
-  margin: 0;
-  overflow: hidden;
+  margin: 0 auto;
   background-color: #383843;
+  max-width: 650px;
+  color: #fff8eb;
+}
+h1, h2, h3, h4, h5, h6{
+  text-align: center;
+  color: #fff9f0;
+  text-shadow: 1px 2px 5px black;
 }
 h1 {
-  text-align: center;
-  color: aliceblue;
-  text-shadow: 1px 2px 5px black;
   font-size: 50px;
 }
 
 .swipslider {
   margin: 50px auto 0;
-  position: relative;
   width: 500px;
   height: 200px;
   background-color: #404040;
-  overflow: hidden;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
-  display: block;
 }
 
-.slides {
-  display: block;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  height: 100%;
-  white-space: nowrap;
-  font-size: 0;
-  transform: translateX(0);
-  position: relative;
-}
-
-.slide {
+.slide{
   font-size: 60px;
   padding-top: 55px;
   color: rgb(212, 212, 212);
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.23);
   font-family: sans-serif;
   text-align: center;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
   background-size: cover;
   background-position: center;
   background-color: #cccccc;
 }
 
-$control-bg-color: rgba(255, 255, 255, 0);
-$control-bg-color-hover: rgba(255, 255, 255, 0.74);
-$control-bg-color-active: rgba(255, 255, 255, 0.5);
-$control-color: rgba(160, 160, 160, 0.53);
-
-.swipslider-next, .swipslider-prev {
-  font-family: "Courier New", Courier, monospace;
-  height: 50px;
-  width: 50px;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  line-height: 50px;
-  font-size: 30px;
-  font-weight: bolder;
-  color: $control-color;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: $control-bg-color;
-  border-radius: 50%;
-  text-decoration: none;
-  transition: all .2s ease-out;
-  -webkit-transition: all .2s ease-out;
-  
-  &:hover {
-    background-color: $control-bg-color-hover;
-  }
-  
-  &:active {
-    background-color: $control-bg-color-active;
-  }
-}
-
-.swipslider-prev {
-  left: 2%;
-}
-
-.swipslider-next {
-  right: 2%;
-}
-
-.swipslider-bullet {
-  position: absolute;
-  bottom: 2%;
-  list-style: none;
-  display: block;
+#content_slider {
   width: 100%;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  li {
-    width: 10px;
-    height: 10px;
-    background-color: $control-color;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: all .2s ease-out;
-    -webkit-transition: all .2s ease-out;
-    
-    &:not(:last-child){
-      margin-right: 5px;
-    }
-    
-    &:hover {
-      background-color: $control-bg-color-hover;
-    }
-    
-    &.active {
-      background-color: $control-bg-color-active;
-    }
-  }
+  min-width: 100px;
+  height: 150px;
 }

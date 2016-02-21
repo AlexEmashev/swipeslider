@@ -1,49 +1,38 @@
-/* line 1, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 1, D:/OneDrive/My Files/webdev/image-slider/style.scss */
 * {
   box-sizing: border-box;
   font-family: sans-serif; }
 
-/* line 6, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 6, D:/OneDrive/My Files/webdev/image-slider/style.scss */
 html, body {
   height: 100%; }
 
-/* line 10, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 10, D:/OneDrive/My Files/webdev/image-slider/style.scss */
 body {
-  margin: 0;
-  overflow: hidden;
-  background-color: #383843; }
+  margin: 0 auto;
+  background-color: #383843;
+  max-width: 650px;
+  color: #fff8eb; }
 
-/* line 15, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-h1 {
+/* line 16, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+h1, h2, h3, h4, h5, h6 {
   text-align: center;
-  color: aliceblue;
-  text-shadow: 1px 2px 5px black;
+  color: #fff9f0;
+  text-shadow: 1px 2px 5px black; }
+
+/* line 21, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+h1 {
   font-size: 50px; }
 
-/* line 22, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 25, D:/OneDrive/My Files/webdev/image-slider/style.scss */
 .swipslider {
   margin: 50px auto 0;
-  position: relative;
   width: 500px;
   height: 200px;
   background-color: #404040;
-  overflow: hidden;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
-  display: block; }
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28); }
 
-/* line 33, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.slides {
-  display: block;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  height: 100%;
-  white-space: nowrap;
-  font-size: 0;
-  transform: translateX(0);
-  position: relative; }
-
-/* line 45, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 33, D:/OneDrive/My Files/webdev/image-slider/style.scss */
 .slide {
   font-size: 60px;
   padding-top: 55px;
@@ -51,75 +40,14 @@ h1 {
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.23);
   font-family: sans-serif;
   text-align: center;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
   background-size: cover;
   background-position: center;
   background-color: #cccccc; }
 
-/* line 65, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.swipslider-next, .swipslider-prev {
-  font-family: "Courier New", Courier, monospace;
-  height: 50px;
-  width: 50px;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  line-height: 50px;
-  font-size: 30px;
-  font-weight: bolder;
-  color: rgba(160, 160, 160, 0.53);
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0);
-  border-radius: 50%;
-  text-decoration: none;
-  transition: all 0.2s ease-out;
-  -webkit-transition: all 0.2s ease-out; }
-  /* line 84, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-  .swipslider-next:hover, .swipslider-prev:hover {
-    background-color: rgba(255, 255, 255, 0.74); }
-  /* line 88, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-  .swipslider-next:active, .swipslider-prev:active {
-    background-color: rgba(255, 255, 255, 0.5); }
-
-/* line 93, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.swipslider-prev {
-  left: 2%; }
-
-/* line 97, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.swipslider-next {
-  right: 2%; }
-
-/* line 101, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-.swipslider-bullet {
-  position: absolute;
-  bottom: 2%;
-  list-style: none;
-  display: block;
+/* line 45, D:/OneDrive/My Files/webdev/image-slider/style.scss */
+#content_slider {
   width: 100%;
-  text-align: center;
-  padding: 0;
-  margin: 0; }
-  /* line 110, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-  .swipslider-bullet li {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(160, 160, 160, 0.53);
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    -webkit-transition: all 0.2s ease-out; }
-    /* line 120, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-    .swipslider-bullet li:not(:last-child) {
-      margin-right: 5px; }
-    /* line 124, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-    .swipslider-bullet li:hover {
-      background-color: rgba(255, 255, 255, 0.74); }
-    /* line 128, E:/OneDrive/My Files/webdev/image-slider/style.scss */
-    .swipslider-bullet li.active {
-      background-color: rgba(255, 255, 255, 0.5); }
+  min-width: 100px;
+  height: 150px; }
 
 /*# sourceMappingURL=style.css.map */
