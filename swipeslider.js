@@ -8,11 +8,33 @@
     var slideContainer = this;
     var slider = this.find('.slides'); // reference to slider
     var defaultSettings = {
+      /**
+      / How long one slide will change the other.
+      */
       transitionDuration: 500,
+      /**
+      / Enable autoplay
+      */
+      autoPlay: true,
+      /**
+      * How frequently slides will be changed.
+      */
       autoPlayTimeout: 3000,
+      /**
+      * Transition effect.
+      */
       timingFunction: 'ease-out',
+      /**
+      * Show 'Next' and 'Previous' buttons.
+      */
       prevNextButtons: true,
+      /**
+      * Show slide switches.
+      */
       bullets: true,
+      /**
+      * Enable swipe function.
+      */
       swipe: true
     };
 
@@ -31,13 +53,14 @@
     var currentSlide = 0;
     var slideCount = 0;
     var slideWidth = 0;
-    // Swipe should be disabled while transition animation is playing.
+    // Flag for disbling swipe function while transition animation is playing.
     var allowSwipe = true;
     var transitionDuration = settings.transitionDuration;
     var swipe = settings.swipe;
-    var autoPlayTimeout = 3000;
+    var autoPlayTimeout = settings.autoPlayTimeout;
+    // ID of timeout function that waits for animation to end.
     var animationDelayID = undefined;
-    var autoAnimation = true;
+    var autoAnimation = settings.autoPlay;
 
     /** 
     * Set initial values.
