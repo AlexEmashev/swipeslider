@@ -131,11 +131,17 @@
     * @param event browser event object
     */
     function swiping(event) {
-      if (event.originalEvent.touches)
-        event = event.originalEvent.touches[0];
+      var pointerData;
+      
+      // Get pointer data from event.
+      if (event.originalEvent.touches) {
+        pointerData = event.originalEvent.touches[0];
+      } else {
+        pointerData = event;
+      }
 
       // Distance of slide from the first touch
-      var deltaSlide = event.clientX - startClientX;
+      var deltaSlide = pointerData.clientX - startClientX;
 
       // If sliding started first time and there was a distance.
       if (slidingState == 1 && deltaSlide != 0) {
@@ -145,12 +151,13 @@
 
       //  When user move image
       if (slidingState == 2) {
-        event.preventDefault(); // Disable default action to prevent unwanted selection.
+        event.preventDefault(); // Disable default action to prevent unwanted selection. Can't prevent touches.
+        
         // Means that user slide 1 pixel for every 1 pixel of mouse movement.
         var touchPixelRatio = 1;
         // Check for user doesn't slide out of boundaries
-        if ((currentSlide == 0 && event.clientX > startClientX) ||
-           (currentSlide == slideCount - 1 && event.clientX < startClientX)) {
+        if ((currentSlide == 0 && pointerData.clientX > startClientX) ||
+           (currentSlide == slideCount - 1 && pointerData.clientX < startClientX)) {
           // Set ratio to 3 means image will be moving by 3 pixels each time user moves it's pointer by 1 pixel. (Rubber-band effect)
           touchPixelRatio = 3;
         }
