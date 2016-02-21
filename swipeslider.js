@@ -12,7 +12,8 @@
       autoPlayTimeout: 3000,
       timingFunction: 'ease-out',
       prevNextButtons: true,
-      bullets: true
+      bullets: true,
+      swipe: true
     };
 
     var settings = $.extend(defaultSettings, options);
@@ -33,6 +34,7 @@
     // Swipe should be disabled while transition animation is playing.
     var allowSwipe = true;
     var transitionDuration = settings.transitionDuration;
+    var swipe = settings.swipe;
     var autoPlayTimeout = 3000;
     var animationDelayID = undefined;
     var autoAnimation = true;
@@ -43,7 +45,14 @@
     (function init() {
       slideWidth = slider.width();
       
-      if(settings.prevNextButtons){
+      // Change slide width when window changes.
+      // To support responsivness.
+      $(window).resize(function() {
+        slideWidth = slider.width();
+        switchSlide();
+      });
+          
+      if(settings.prevNextButtons) {
         insertPrevNextButtons();
       }
       
@@ -52,18 +61,20 @@
       slider.find('.slide:nth-child(2)').clone().appendTo(slider);
       slideCount = slider.find('.slide').length;
       
-      if(settings.bullets){
+      if(settings.bullets) {
         insertBullets(slideCount - 2);
       }
 
       setTransitionDuration(transitionDuration);
       setTimingFunction(settings.timingFunction);
       setTransitionProperty('all');
-
-      // Add event handlers to react when user swipe.
-      slider.on('mousedown touchstart', swipeStart);
-      $('html').on('mouseup touchend', swipeEnd);
-      $('html').on('mousemove touchmove', swipe);
+      
+      if(swipe) {
+        // Add event handlers to react when user swipe.
+        slider.on('mousedown touchstart', swipeStart);
+        $('html').on('mouseup touchend', swipeEnd);
+        $('html').on('mousemove touchmove', swiping);
+      }
 
       // Jump to slide 1 (since another slide was added to the beginning of row);
       jumpToSlide(1);
@@ -95,8 +106,7 @@
     /** Triggers when user continues swipe.
     * @param event browser event object
     */
-    function swipe(event) {
-      event.preventDefault();
+    function swiping(event) {
       if (event.originalEvent.touches)
         event = event.originalEvent.touches[0];
 
@@ -111,11 +121,12 @@
 
       //  When user move image
       if (sladingState == 2) {
+        event.preventDefault(); // Disable default action to prevent unwanted selection.
         // Means that user slide 1 pixel for every 1 pixel of mouse movement.
         var touchPixelRatio = 1;
         // Check for user doesn't slide out of boundaries
         if ((currentSlide == 0 && event.clientX > startClientX) ||
-           (currentSlide == slideCount - 1 && event.clientX < startClientX)){
+           (currentSlide == slideCount - 1 && event.clientX < startClientX)) {
           // Set ratio to 3 means image will be moving by 3 pixels each time user moves it's pointer by 1 pixel. (Rubber-band effect)
           touchPixelRatio = 3;
         }
