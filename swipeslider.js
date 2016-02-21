@@ -24,7 +24,7 @@
     /* 1 - sliding started
     /* 2 - slide released
     */
-    var sladingState = 0;
+    var slidingState = 0;
     var startClientX = 0;
     var startPixelOffset = 0;
     var pixelOffset = 0;
@@ -97,8 +97,8 @@
         event = event.originalEvent.touches[0];
 
       // Check if slide started on slider 
-      if (sladingState == 0){
-        sladingState = 1; // Status 1 = slide started.
+      if (slidingState == 0){
+        slidingState = 1; // Status 1 = slide started.
         startClientX = event.clientX;
       }
     }
@@ -114,13 +114,13 @@
       var deltaSlide = event.clientX - startClientX;
 
       // If sliding started first time and there was a distance.
-      if (sladingState == 1 && deltaSlide != 0) {
-        sladingState = 2; // Set status to 'actually moving'
+      if (slidingState == 1 && deltaSlide != 0) {
+        slidingState = 2; // Set status to 'actually moving'
         startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
       }
 
       //  When user move image
-      if (sladingState == 2) {
+      if (slidingState == 2) {
         event.preventDefault(); // Disable default action to prevent unwanted selection.
         // Means that user slide 1 pixel for every 1 pixel of mouse movement.
         var touchPixelRatio = 1;
@@ -143,9 +143,9 @@
     * @param event browser event object
     */
     function swipeEnd(event) {
-      if (sladingState == 2){
+      if (slidingState == 2) {
         // Reset sliding state.
-        sladingState = 0;
+        slidingState = 0;
 
         // Calculate which slide need to be in view.
         currentSlide = pixelOffset < startPixelOffset ? currentSlide + 1 : currentSlide -1;
@@ -160,6 +160,9 @@
         switchSlide();
         enableAutoPlay();
       }
+      
+      slidingState = 0;
+
     } 
 
     /** 
@@ -263,7 +266,7 @@
     * Switches slideshow to exact slide number.
     * Remark: respecting two slides that were added for smooth transaction effect.
     */
-    function jumpToSlide(slideNumber){
+    function jumpToSlide(slideNumber) {
       enableTransition(false);
       currentSlide = slideNumber;
       translateX(-slideWidth * currentSlide);
@@ -293,7 +296,7 @@
     * Translates slides on certain amount.
     * @param distance {Number} distance of transition. If negative, transition from right to left.
     */
-    function translateX(distance){
+    function translateX(distance) {
       slider
       // Prefixes are being set automatically.
   //      .css('-webkit-transform','translateX(' + distance + 'px)')
@@ -305,7 +308,7 @@
     * Sets duration of transition between slides.
     * @param duration {Number} amount in milliseconds.
     */
-    function setTransitionDuration(duration){
+    function setTransitionDuration(duration) {
       slider
   //      .css('-webkit-transition-duration', duration + 'ms')
         .css('transition-duration', duration + 'ms');
@@ -314,7 +317,7 @@
     /**
     * Sets transition function.
     */
-    function setTimingFunction(functionDescription){
+    function setTimingFunction(functionDescription) {
       slider
   //      .css('-webkit-transition-timing-function', functionDescription)
         .css('transition-timing-function', functionDescription);
@@ -323,7 +326,7 @@
     /**
     * Sets property that will be used in transition effect.
     */
-    function setTransitionProperty(property){
+    function setTransitionProperty(property) {
       slider
   //      .css('-webkit-transition-property', property)
         .css('transition-property', property);
@@ -332,7 +335,7 @@
     /**
     * Next slide and Previous slide buttons.
     */
-    function insertPrevNextButtons(){
+    function insertPrevNextButtons() {
       slider.after('<a href="#" class="swipslider-prev">&lt;</a>');
       slideContainer.find('.swipslider-prev').click(function(){
         disableAutoPlay();
@@ -350,12 +353,12 @@
     /**
     * Add bullet indicator of current slide.
     */
-    function insertBullets(count){
+    function insertBullets(count) {
       slider.after('<ul class="swipslider-bullet"></ul>');
       var bulletList = slider.parent().find('.swipslider-bullet');
-      for (var i = 0; i < count; i++){
+      for (var i = 0; i < count; i++) {
        
-        if (i == 0){
+        if (i == 0) {
           bulletList.append('<li class="slide-' + i + ' active"></li>');
         } else {
           bulletList.append('<li class="slide-' + i + '"></li>');
@@ -364,7 +367,7 @@
         var item = slideContainer.find('.slide-' + i);
         
         // Workaround a problem when iterator i will have max value due to closure nature.
-        (function(lockedIndex){
+        (function(lockedIndex) {
           item.click(function() {
             // Disable autoplay on time of transition.
             disableAutoPlay();
@@ -380,12 +383,12 @@
     * Sets active bullet mark of active slide.
     * @param number {Number} active slide with respect of two added slides. 
     */
-    function setActiveBullet(number){
+    function setActiveBullet(number) {
       var activeBullet = 0;
       
-      if(number == 0){
+      if(number == 0) {
         activeBullet = slideCount - 3;
-      } else if (number == slideCount - 1){
+      } else if (number == slideCount - 1) {
         activeBullet = 0;
       } else {
         activeBullet = number - 1;
