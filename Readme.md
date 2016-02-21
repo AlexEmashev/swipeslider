@@ -4,6 +4,8 @@
 
 This is tiny image slider that supports mouse and touch functions to change images.
 
+[Demo page here](http://alexemashev.github.io/swipeslider/)
+
 ##Current Status
 
 Early WIP.
