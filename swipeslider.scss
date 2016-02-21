@@ -23,11 +23,40 @@ $control-color: rgba(160, 160, 160, 0.53);
 .slide {
   width: 100%;
   height: 100%;
+  margin: auto;
   display: inline-block;
+  position: relative;
+  
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .content {
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 14px;
+    
+    img {
+      position: static;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      bottom: auto;
+    }
+  }
 }
 }
 
-.swipslider-next, .swipslider-prev {
+.swipslider-next-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
   width: 50px;
@@ -45,6 +74,7 @@ $control-color: rgba(160, 160, 160, 0.53);
   text-decoration: none;
   transition: all .2s ease-out;
   -webkit-transition: all .2s ease-out;
+  cursor: pointer;
   
   &:hover {
     background-color: $control-bg-color-hover;
@@ -88,6 +118,7 @@ $control-color: rgba(160, 160, 160, 0.53);
     
     &.active {
       background-color: $control-bg-color-active;
+      box-shadow: 0 0 2px $control-color;
     }
     
     &:not(:last-child){
