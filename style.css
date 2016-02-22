@@ -1,64 +1,64 @@
-/* line 1, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 1, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 * {
   box-sizing: border-box;
   font-family: sans-serif; }
 
-/* line 6, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 6, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 html, body {
   height: 100%; }
 
-/* line 10, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 10, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 body {
   margin: 0 auto;
   background-color: #383843;
   max-width: 650px;
   color: #fff8eb; }
 
-/* line 16, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 16, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: #fff9f0;
   text-shadow: 1px 2px 5px black; }
 
-/* line 21, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 21, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 h1 {
   font-size: 50px; }
 
-/* line 25, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 25, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 h2 {
   margin-top: 80px; }
 
-/* line 29, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 29, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 .swipslider {
   margin: 50px auto 0;
   background-color: #404040;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28); }
 
-/* line 36, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 36, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 #full_feature {
-  width: 640px;
+  max-width: 640px;
   height: 256px; }
 
-/* line 41, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 41, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 #content_slider {
   width: 640px;
   background-color: #f0f0f0; }
-  /* line 45, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 45, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
   #content_slider .wanted {
     padding: 25px; }
-    /* line 47, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 47, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #content_slider .wanted:after {
       display: table;
       content: "";
       clear: both; }
-    /* line 53, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 53, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #content_slider .wanted img {
       float: left;
       position: relative;
       height: 225px;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.33);
       margin-right: 15px; }
-    /* line 61, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 61, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #content_slider .wanted .description {
       float: left;
       padding: 10px;
@@ -70,44 +70,44 @@ h2 {
       width: 349px;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.58);
       white-space: normal; }
-      /* line 73, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 73, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description h1 {
         font-size: 18px;
         margin: 0;
         text-align: left;
         color: #515f6c;
         text-shadow: none; }
-      /* line 81, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 81, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description::after {
         display: table;
         content: "";
         clear: both; }
-      /* line 87, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 87, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description p {
         margin-bottom: 1px;
         margin-top: 6px;
         font-size: 14px; }
-      /* line 93, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 93, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description p.award {
         color: #be9a02; }
-      /* line 97, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 97, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description ul {
         list-style: square;
         padding-left: 20px;
         font-size: 14px; }
-      /* line 103, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 103, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #content_slider .wanted .description strong {
         color: #515f6c; }
 
-/* line 112, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 112, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 #responsiveness {
   height: 400px;
   background-color: #242424; }
 
-/* line 117, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 117, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 #customizability {
   height: 200px; }
-  /* line 120, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 120, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
   #customizability .swipslider-next-prev {
     width: 120px;
     height: 60px;
@@ -115,36 +115,36 @@ h2 {
     color: rgba(255, 254, 235, 0.28);
     border-radius: 3px;
     font-size: 25px; }
-    /* line 128, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 128, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #customizability .swipslider-next-prev:hover {
       color: #fffeeb;
       background-color: #525252;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.57); }
-  /* line 135, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 135, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
   #customizability .swipslider-prev {
     left: 0%; }
-    /* line 138, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 138, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #customizability .swipslider-prev::after {
       line-height: 60px;
       content: '< back'; }
-  /* line 144, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 144, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
   #customizability .swipslider-next {
     right: 0%; }
-    /* line 147, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 147, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #customizability .swipslider-next::after {
       line-height: 60px;
       content: 'next >'; }
-  /* line 153, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+  /* line 153, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
   #customizability .swipslider-bullet {
     top: 4%; }
-    /* line 156, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+    /* line 156, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
     #customizability .swipslider-bullet li {
       width: 10px;
       height: 5px;
       background-color: rgba(255, 254, 235, 0.28);
       border-radius: 0;
       vertical-align: middle; }
-      /* line 163, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 163, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #customizability .swipslider-bullet li.active {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
@@ -153,12 +153,12 @@ h2 {
         width: 0;
         height: 0;
         vertical-align: bottom; }
-      /* line 174, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+      /* line 174, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
       #customizability .swipslider-bullet li:hover {
         height: 10px;
         background-color: #fffeeb; }
 
-/* line 183, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 183, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 .slide-number {
   font-size: 60px;
   display: inline-block;
@@ -168,7 +168,7 @@ h2 {
   transform: translate(-50%);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.54); }
 
-/* line 194, E:/OneDrive/My Files/webdev/image-slider/style.scss */
+/* line 194, E:/OneDrive/My Files/webdev/swipeslider/style.scss */
 footer {
   margin-top: 20px;
   text-align: center;
