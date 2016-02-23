@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <title>Image Slider With Drag Function</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dist/swipeslider.css">
+  <script src="jquery.min.js"></script>
+  <script src="dist/swipeslider.js"></script>
+  <script>
+    $(window).load(function() {
+      $('#full_feature').swipeslider();
+      $('#content_slider').swipeslider({
+        transitionDuration: 600,
+        autoPlayTimeout: 10000
+      });
+      $('#responsiveness').swipeslider();
+      $('#customizability').swipeslider({
+        transitionDuration: 1500, 
+        autoPlayTimeout: 4000, 
+        timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)'});
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Swipe Slider</h1>
+  </header>
+  <article>
+    <section>
+      <p>jQuery slider (carousel) plugin for organizing a slideshow on a web-page. This plugin utilizes CSS transitions for smooth animation.</p>
+      <p>Plugin can be obtained on this <a href="https://github.com/AlexEmashev/swipeslider">Github page</a>.</p>
+      <figure id="full_feature" class="swipslider">
+        <ul class="slides">
+          <li class="slide">
+            <img src="img/lang_yie_ar_kung_fu.jpg" alt="Lang from Yie Ar Kung Fu">
+          </li>
+          <li class="slide">
+            <img src="img/summer_beach.jpg" alt="Summer beach concept">
+          </li>
+          <li class="slide">
+            <img src="img/borderlands_tiny_tina.jpg" alt="Tiny Tina from Borderlands 2">
+          </li>
+          <li class="slide">
+            <img src="img/redhead.jpg" alt="Redhead girl">
+          </li>
+        </ul>
+      </figure>
+      <p>Features supported:</p>
+      <ul>
+        <li><strong>Swipe</strong> - support use mouse or touch to switch slides;</li>
+        <li><strong>Customizability</strong> - every part of slider can be edited or disabled;</li>
+        <li><strong>Responsiveness</strong> - slider can stretch itself to 100 % width of the container. Image takes space available in slider;</li>
+        <li><strong>Content slider</strong> - can be used to switch between cards with content (other HTML elements);</li>
+        <li><strong>Opensource</strong> - source can be acquired on Github page of the project.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Content slider</h2>
+      <p>Image slider can work as content slider.</p>
+      <figure id="content_slider" class="swipslider">
+        <ul class="slides">
+          <li class="slide">
+            <figure class="wanted content">
+              <img src="img/wanted1.jpg" alt="Mafia Boss">
+              <div class="description">
+                <h1>Wanted: Mafia Boss</h1>
+                <p>
+                  <strong>Description:</strong> accused in organization of criminal association that terrorise peaceful citizens of Foo town.
+                </p>
+
+                <p> 
+                  <strong>Distinguishing marks:</strong>
+                  </p>
+                  <ul>
+                    <li>smokes big cigars;</li>
+                    <li>always wears a luxurious suit (even when while sleeping);</li>
+                    <li>rose buttonhole.</li>
+                  </ul>
+                <p class="award">
+                  <strong>Award:</strong> 200 000$ for reliable location information.
+                </p>
+              </div>
+            </figure>
+          </li>
+          <li class="slide">
+            <figure class="wanted content">
+              <img src="img/wanted2.jpg" alt="Mafia Boss">
+              <div class="description">
+                <h1>Wanted: Underboss</h1>
+                <p>
+                  <strong>Description:</strong> accused in being extremely rude with members of gang, shooting on public and uncontrolled behaviour under the influence.
+                </p>
+
+                <p> 
+                  <strong>Distinguishing marks:</strong>
+                  </p>
+                  <ul>
+                    <li>always smooth;</li>
+                    <li>carrying a gun;</li>
+                    <li>drinking too much Scotch.</li>
+                  </ul>
+                <p class="award">
+                  <strong>Award:</strong> 1000$ for more information of this subject.
+                </p>
+              </div>
+            </figure>
+          </li>
+          <li class="slide">
+            <figure class="wanted content">
+              <img src="img/wanted3.jpg" alt="Mafia Boss">
+              <div class="description">
+                <h1>Wanted: Big guy nickname 'Peewee'</h1>
+                <p>
+                  <strong>Description:</strong> accused in littering, bad language. 
+                </p>
+
+                <p> 
+                  <strong>Distinguishing marks:</strong>
+                  </p>
+                  <ul>
+                    <li>extremely big;</li>
+                    <li>little vocabulary;</li>
+                    <li>may be bold.</li>
+                  </ul>
+                <p class="award">
+                  <strong>Award:</strong> 700$ for teaching him good manners.
+                </p>
+              </div>
+            </figure>
+          </li>
+          <li class="slide">
+            <figure class="wanted content">
+              <img src="img/wanted4.jpg" alt="Mafia Boss">
+              <div class="description">
+                <h1>Wanted: Cold blooded dude</h1>
+                <p>
+                  <strong>Description:</strong> kills the audience with bad jokes and pronounced eyebrows.  
+                </p>
+
+                <p> 
+                  <strong>Distinguishing marks:</strong>
+                  </p>
+                  <ul>
+                    <li>carrying blunt, plastic knife;</li>
+                    <li>wears napkin in right pocket;</li>
+                    <li>bold as kneecap.</li>
+                  </ul>
+                <p class="award">
+                  <strong>Award:</strong> 150 000$ for comedian courses for that person.
+                </p>
+              </div>
+            </figure>
+          </li>
+        </ul>
+      </figure>
+    </section>
+    <section>
+      <h2>Responsiveness</h2>
+      <p>Slider can resize itself with the window. Also image self resizing to fit slider.</p>
+      <figure id="responsiveness" class="swipslider">
+        <ul class="slides">
+          <li class="slide">
+            <img src="img/children_game_concept01.jpg" alt="Concept for children game">
+          </li>
+          <li class="slide">
+            <img src="img/children_game_concept02.jpg" alt="Another Concept for children game">
+          </li>
+        </ul>
+      </figure>
+    </section>
+    <section>
+      <h2>Customizable</h2>
+      <p>Elements of slider can be easily customized.</p>
+      <figure id="customizability" class="swipslider">
+      <ul class="slides">
+        <li class="slide" style="background-color: #53c780">
+          <span class="slide-number">1</span>
+        </li>
+        <li class="slide" style="background-color: #53c7b5">
+          <span class="slide-number">2</span>
+        </li>
+        <li class="slide" style="background-color: #53b1c7">
+          <span class="slide-number">3</span>
+        </li>
+        <li class="slide" style="background-color: #538dc7">
+          <span class="slide-number">4</span>
+        </li>
+        <li class="slide" style="background-color: #535cc7">
+          <span class="slide-number">5</span>
+        </li>
+      </ul>
+      </figure>
+    </section>
+  </article>
+  <footer>The MIT License. Images by me <em>(Alexander Emashev)</em>.</footer>
+</body>
+
+</html>
