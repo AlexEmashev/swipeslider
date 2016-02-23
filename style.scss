@@ -26,6 +26,21 @@ h2 {
   margin-top: 80px;
 }
 
+a{
+  &:link {
+    color: #fff0d5;  
+  }
+  &:hover {
+    color: #aaa3fc;
+  }
+  &:active {
+    color: #9289ff;
+  }
+  &:visited {
+    color: #fff0d5;
+  }
+}
+
 .swipslider {
   margin: 50px auto 0;
   background-color: #404040;

@@ -6,9 +6,9 @@
 <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
   <title>Image Slider With Drag Function</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="swipeslider.css">
+  <link rel="stylesheet" href="dist/swipeslider.css">
   <script src="jquery.min.js"></script>
-  <script src="swipeslider.js"></script>
+  <script src="dist/swipeslider.js"></script>
   <script>
     $(window).load(function() {
       $('#full_feature').swipeslider();
@@ -17,7 +17,10 @@
         autoPlayTimeout: 10000
       });
       $('#responsiveness').swipeslider();
-      $('#customizability').swipeslider({transitionDuration: 1500, autoPlayTimeout: 4000, timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)'});
+      $('#customizability').swipeslider({
+        transitionDuration: 1500, 
+        autoPlayTimeout: 4000, 
+        timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)'});
     });
   </script>
 </head>
@@ -28,8 +31,8 @@
   </header>
   <article>
     <section>
-      <p>jQuery carousel plugin for organizing a slideshow on a web-page. This plugin utilizes CSS transitions for smooth animation.</p>
-      <p>Plugin can be obtained on this Github page.</p>
+      <p>jQuery slider (carousel) plugin for organizing a slideshow on a web-page. This plugin utilizes CSS transitions for smooth animation.</p>
+      <p>Plugin can be obtained on this <a href="https://github.com/AlexEmashev/swipeslider">Github page</a>.</p>
       <figure id="full_feature" class="swipslider">
         <ul class="slides">
           <li class="slide">
@@ -193,7 +196,7 @@
       </figure>
     </section>
   </article>
-  <footer>The MIT License. Images by are my <em>(Alexander Emashev)</em>.</footer>
+  <footer>The MIT License. Images by me <em>(Alexander Emashev)</em>.</footer>
 </body>
 
 </html>
