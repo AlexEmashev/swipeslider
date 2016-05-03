@@ -7,17 +7,20 @@ $control-color: rgba(160, 160, 160, 0.53);
   position: relative;
   overflow: hidden;
   display: block;
+  padding-top: 60%;
   
   .slides {
   display: block;
   padding: 0;
+  
   list-style: none;
   width: 100%;
   height: 100%;
   white-space: nowrap;
   font-size: 0;
   transform: translateX(0);
-  position: relative;
+  position: absolute;
+  bottom: 0;
 }
 
 .slide {
@@ -27,15 +30,17 @@ $control-color: rgba(160, 160, 160, 0.53);
   display: inline-block;
   position: relative;
   
-  img {
+  & > img {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-height: 100%;
     max-width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    user-select: none;
+    
   }
   
   .content {
@@ -45,13 +50,13 @@ $control-color: rgba(160, 160, 160, 0.53);
     margin-right: 0;
     font-size: 14px;
     
-    img {
-      position: static;
-      top: auto;
-      bottom: auto;
-      left: auto;
-      bottom: auto;
-    }
+//    img {
+//      position: static;
+//      top: auto;
+//      bottom: auto;
+//      left: auto;
+//      bottom: auto;
+//    }
   }
 }
 }
@@ -75,6 +80,7 @@ $control-color: rgba(160, 160, 160, 0.53);
   transition: all .2s ease-out;
   -webkit-transition: all .2s ease-out;
   cursor: pointer;
+  user-select: none;
   
   &:hover {
     background-color: $control-bg-color-hover;

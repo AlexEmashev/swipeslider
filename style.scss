@@ -43,19 +43,14 @@ a{
 
 .swipslider {
   margin: 50px auto 0;
-  background-color: #404040;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
+//  background-color: rgba(31, 30, 36, 0);
+//  //box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
   
 }
 
-#full_feature {
-  max-width: 640px;
-  height: 256px;
-}
-
 #content_slider {
-  width: 640px;
   background-color: #f0f0f0;
+
   
   .wanted {
     padding: 25px;
@@ -125,13 +120,10 @@ a{
 }
 
 #responsiveness {
-  height: 400px;
   background-color: rgb(36, 36, 36);
 }
 
 #customizability {
-  height: 200px;
-  
   .swipslider-next-prev {
     width: 120px;
     height: 60px;

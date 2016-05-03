@@ -2,9 +2,9 @@
 * jQuery plugin "Swipe slider".
 * Image slider that supports swiping function to change slides.
 */
-(function($) {
+(function ($) {
   
-  $.fn.swipeslider = function(options) {
+  $.fn.swipeslider = function (options) {
     var slideContainer = this;
     var slider = this.find('.slides'); // reference to slider
     var defaultSettings = {
@@ -19,7 +19,7 @@
       /**
       * How frequently slides will be changed.
       */
-      autoPlayTimeout: 3000,
+      autoPlayTimeout: 4000,
       /**
       * Transition effect.
       */
@@ -42,9 +42,9 @@
 
     // Privates //
     /** Sliding states:
-    /* 0 - sliding not started
-    /* 1 - sliding started
-    /* 2 - slide released
+    * 0 - sliding not started
+    * 1 - sliding started
+    * 2 - slide released
     */
     var slidingState = 0;
     var startClientX = 0;
@@ -52,7 +52,8 @@
     var pixelOffset = 0;
     var currentSlide = 0;
     var slideCount = 0;
-    var slideWidth = 0;
+    // Overall width of sliders.
+    var slidesWidth = 0;
     // Flag for disbling swipe function while transition animation is playing.
     var allowSwipe = true;
     var transitionDuration = settings.transitionDuration;
@@ -62,19 +63,15 @@
     var animationDelayID = undefined;
     var allowSlideSwitch = true;
     var autoPlay = settings.autoPlay;
-
     /** 
     * Set initial values.
     */
     (function init() {
-      slideWidth = slider.width();
+      // 
+      slidesWidth = slider.width();
       
       // Change slide width when window changes.
-      // To support responsivness.
-      $(window).resize(function() {
-        slideWidth = slider.width();
-        switchSlide();
-      });
+      $(window).resize(resizeSlider);
           
       if(settings.prevNextButtons) {
         insertPrevNextButtons();
@@ -105,6 +102,15 @@
 
       enableAutoPlay();
     })();
+    
+    /**
+    * Changes slider size to response on window change.
+    */
+    function resizeSlider(){
+      // Slide width is being changed automatically. Tough slidesWidth used to calculate a distance of transition effect.
+      slidesWidth = slider.width();
+      switchSlide();
+    }
 
     /**
     * Triggers when user starts swipe.
@@ -146,7 +152,7 @@
       // If sliding started first time and there was a distance.
       if (slidingState == 1 && deltaSlide != 0) {
         slidingState = 2; // Set status to 'actually moving'
-        startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
+        startPixelOffset = currentSlide * -slidesWidth; // Store current offset of slide
       }
 
       //  When user move image
@@ -185,7 +191,7 @@
         currentSlide = Math.min(Math.max(currentSlide, 0), slideCount - 1);
 
         // Since in this example slide is full viewport width offset can be calculated according to it.
-        pixelOffset = currentSlide * -slideWidth;
+        pixelOffset = currentSlide * -slidesWidth;
 
         disableSwipe();
         switchSlide();
@@ -269,7 +275,7 @@
     */
     function switchSlide() {
       enableTransition(true);
-      translateX(-currentSlide * slideWidth);
+      translateX(-currentSlide * slidesWidth);
       
       if(currentSlide == 0) {
         window.setTimeout(jumpToEnd, transitionDuration);
@@ -302,7 +308,7 @@
     function jumpToSlide(slideNumber) {
       enableTransition(false);
       currentSlide = slideNumber;
-      translateX(-slideWidth * currentSlide);
+      translateX(-slidesWidth * currentSlide);
       window.setTimeout(returnTransitionAfterJump, 50);
     }
 
