@@ -2,11 +2,11 @@
 * jQuery plugin "Swipe slider".
 * Image slider that supports swiping function to change slides.
 */
-(function($) {
+(function ($) {
   
-  $.fn.swipeslider = function(options) {
+  $.fn.swipeslider = function (options) {
     var slideContainer = this;
-    var slider = this.find('.slides'); // reference to slider
+    var slider = this.find('.sw-slides'); // reference to slider
     var defaultSettings = {
       /**
       / How long one slide will change the other.
@@ -19,7 +19,7 @@
       /**
       * How frequently slides will be changed.
       */
-      autoPlayTimeout: 3000,
+      autoPlayTimeout: 4000,
       /**
       * Transition effect.
       */
@@ -35,16 +35,21 @@
       /**
       * Enable swipe function.
       */
-      swipe: true
+      swipe: true,
+      /**
+      * Overall height of the slider. Set it to percent to make it responsive.
+      * Otherwise the slider will keep the height.
+      */
+      sliderHeight: '60%'
     };
 
     var settings = $.extend(defaultSettings, options);
 
     // Privates //
     /** Sliding states:
-    /* 0 - sliding not started
-    /* 1 - sliding started
-    /* 2 - slide released
+    * 0 - sliding not started
+    * 1 - sliding started
+    * 2 - slide released
     */
     var slidingState = 0;
     var startClientX = 0;
@@ -52,7 +57,8 @@
     var pixelOffset = 0;
     var currentSlide = 0;
     var slideCount = 0;
-    var slideWidth = 0;
+    // Overall width of sliders.
+    var slidesWidth = 0;
     // Flag for disbling swipe function while transition animation is playing.
     var allowSwipe = true;
     var transitionDuration = settings.transitionDuration;
@@ -62,28 +68,25 @@
     var animationDelayID = undefined;
     var allowSlideSwitch = true;
     var autoPlay = settings.autoPlay;
-
     /** 
     * Set initial values.
     */
     (function init() {
-      slideWidth = slider.width();
+      $(slideContainer).css('padding-top', settings.sliderHeight);
       
+      slidesWidth = slider.width();
+        
       // Change slide width when window changes.
-      // To support responsivness.
-      $(window).resize(function() {
-        slideWidth = slider.width();
-        switchSlide();
-      });
+      $(window).resize(resizeSlider);
           
       if(settings.prevNextButtons) {
         insertPrevNextButtons();
       }
       
       // Add last slide before first and first before last to seamless and engless transition
-      slider.find('.slide:last-child').clone().prependTo(slider);
-      slider.find('.slide:nth-child(2)').clone().appendTo(slider);
-      slideCount = slider.find('.slide').length;
+      slider.find('.sw-slide:last-child').clone().prependTo(slider);
+      slider.find('.sw-slide:nth-child(2)').clone().appendTo(slider);
+      slideCount = slider.find('.sw-slide').length;
       
       if(settings.bullets) {
         insertBullets(slideCount - 2);
@@ -105,6 +108,15 @@
 
       enableAutoPlay();
     })();
+    
+    /**
+    * Changes slider size to response on window change.
+    */
+    function resizeSlider(){
+      // Slide width is being changed automatically. Tough slidesWidth used to calculate a distance of transition effect.
+      slidesWidth = slider.width();
+      switchSlide();
+    }
 
     /**
     * Triggers when user starts swipe.
@@ -146,7 +158,7 @@
       // If sliding started first time and there was a distance.
       if (slidingState == 1 && deltaSlide != 0) {
         slidingState = 2; // Set status to 'actually moving'
-        startPixelOffset = currentSlide * -slideWidth; // Store current offset of slide
+        startPixelOffset = currentSlide * -slidesWidth; // Store current offset of slide
       }
 
       //  When user move image
@@ -185,7 +197,7 @@
         currentSlide = Math.min(Math.max(currentSlide, 0), slideCount - 1);
 
         // Since in this example slide is full viewport width offset can be calculated according to it.
-        pixelOffset = currentSlide * -slideWidth;
+        pixelOffset = currentSlide * -slidesWidth;
 
         disableSwipe();
         switchSlide();
@@ -269,7 +281,7 @@
     */
     function switchSlide() {
       enableTransition(true);
-      translateX(-currentSlide * slideWidth);
+      translateX(-currentSlide * slidesWidth);
       
       if(currentSlide == 0) {
         window.setTimeout(jumpToEnd, transitionDuration);
@@ -302,7 +314,7 @@
     function jumpToSlide(slideNumber) {
       enableTransition(false);
       currentSlide = slideNumber;
-      translateX(-slideWidth * currentSlide);
+      translateX(-slidesWidth * currentSlide);
       window.setTimeout(returnTransitionAfterJump, 50);
     }
 
@@ -369,16 +381,16 @@
     * Next slide and Previous slide buttons.
     */
     function insertPrevNextButtons() {
-      slider.after('<span class="swipslider-next-prev swipslider-prev"></span>');
-      slideContainer.find('.swipslider-prev').click(function(){
+      slider.after('<span class="sw-next-prev sw-prev"></span>');
+      slideContainer.find('.sw-prev').click(function(){
         if(allowSlideSwitch){
           disableAutoPlay();
           switchBackward();
           enableAutoPlay();
         }
       });
-      slider.after('<span class="swipslider-next-prev swipslider-next"></span>');
-      slideContainer.find('.swipslider-next').click(function(){
+      slider.after('<span class="sw-next-prev sw-next"></span>');
+      slideContainer.find('.sw-next').click(function(){
         if(allowSlideSwitch) {
           disableAutoPlay();
           switchForward();
@@ -391,17 +403,17 @@
     * Add bullet indicator of current slide.
     */
     function insertBullets(count) {
-      slider.after('<ul class="swipslider-bullet"></ul>');
-      var bulletList = slider.parent().find('.swipslider-bullet');
+      slider.after('<ul class="sw-bullet"></ul>');
+      var bulletList = slider.parent().find('.sw-bullet');
       for (var i = 0; i < count; i++) {
        
         if (i == 0) {
-          bulletList.append('<li class="slide-' + i + ' active"></li>');
+          bulletList.append('<li class="sw-slide-' + i + ' active"></li>');
         } else {
-          bulletList.append('<li class="slide-' + i + '"></li>');
+          bulletList.append('<li class="sw-slide-' + i + '"></li>');
         }
         
-        var item = slideContainer.find('.slide-' + i);
+        var item = slideContainer.find('.sw-slide-' + i);
         
         // Workaround a problem when iterator i will have max value due to closure nature.
         (function(lockedIndex) {
@@ -431,8 +443,8 @@
         activeBullet = number - 1;
       }
       
-      slideContainer.find('.swipslider-bullet').find('li').removeClass('active');
-      slideContainer.find('.slide-' + activeBullet).addClass('active');
+      slideContainer.find('.sw-bullet').find('li').removeClass('active');
+      slideContainer.find('.sw-slide-' + activeBullet).addClass('active');
     }
 
     return slideContainer;    

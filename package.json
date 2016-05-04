@@ -1,0 +1,35 @@
+{
+  "name": "swipeslider",
+  "version": "2.0.0",
+  "description": "jQuery plugin that represents responsive image slider with touch support.",
+  "main": "dist/swipeslider.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexEmashev/swipeslider.git"
+  },
+  "keywords": [
+    "swipeslider",
+    "carousel",
+    "slider",
+    "jquery"
+  ],
+  "author": "Alexander Emashev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexEmashev/swipeslider/issues"
+  },
+  "homepage": "https://github.com/AlexEmashev/swipeslider#readme",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "browser-sync": "^2.12.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-uglify": "^1.5.3"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "swipeslider",
+  "description": "jQuery plugin that represents responsive image slider with touch support.",
+  "main": ["./dist/swipeslider.min.js", "./dist/swipeslider.css"],
+  "authors": [
+    "Alexander Emashev"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "swipeslider",
+    "carousel",
+    "slider",
+    "jquery"
+  ],
+  "homepage": "https://github.com/AlexEmashev/swipeslider",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".sass-cache"
+  ],
+  "dependencies": {
+    "jquery": "^2"
+  }
+}

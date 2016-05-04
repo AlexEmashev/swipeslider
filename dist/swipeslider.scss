@@ -7,56 +7,54 @@ $control-color: rgba(160, 160, 160, 0.53);
   position: relative;
   overflow: hidden;
   display: block;
+  padding-top: 60%;
+  user-select: none;
   
-  .slides {
+  .sw-slides {
   display: block;
   padding: 0;
+  
   list-style: none;
   width: 100%;
   height: 100%;
   white-space: nowrap;
   font-size: 0;
   transform: translateX(0);
-  position: relative;
+  position: absolute;
+  bottom: 0;
 }
 
-.slide {
+.sw-slide {
   width: 100%;
   height: 100%;
   margin: auto;
   display: inline-block;
   position: relative;
   
-  img {
+  & > img {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-height: 100%;
     max-width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    user-select: none;
+    
   }
   
-  .content {
+  .sw-content {
     width: 100%;
     height: 100%;
     margin-left: 0;
     margin-right: 0;
     font-size: 14px;
-    
-    img {
-      position: static;
-      top: auto;
-      bottom: auto;
-      left: auto;
-      bottom: auto;
-    }
   }
 }
 }
 
-.swipslider-next-prev {
+.sw-next-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
   width: 50px;
@@ -73,8 +71,8 @@ $control-color: rgba(160, 160, 160, 0.53);
   border-radius: 50%;
   text-decoration: none;
   transition: all .2s ease-out;
-  -webkit-transition: all .2s ease-out;
   cursor: pointer;
+  user-select: none;
   
   &:hover {
     background-color: $control-bg-color-hover;
@@ -85,21 +83,21 @@ $control-color: rgba(160, 160, 160, 0.53);
   }
 }
 
-.swipslider-prev {
+.sw-prev {
   left: 2%;
   &::after{
     content: '<';
   }
 }
 
-.swipslider-next {
+.sw-next {
   right: 2%;
   &::after {
     content: '>';
   }
 }
 
-.swipslider-bullet {
+.sw-bullet {
   position: absolute;
   bottom: 2%;
   list-style: none;
@@ -116,7 +114,6 @@ $control-color: rgba(160, 160, 160, 0.53);
     display: inline-block;
     cursor: pointer;
     transition: all .2s ease-out;
-    -webkit-transition: all .2s ease-out;
     
     &:hover {
       background-color: $control-bg-color-hover;
