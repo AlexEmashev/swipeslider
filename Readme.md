@@ -19,8 +19,19 @@ This is a tiny jQuery plugin that represents image slider (carousel). Slider sup
 - responsiveness, can take up available space and shrink images to fit slider if needed;
 
 ##Installation
-Add these two files to your page:
 
+###Installation Using Bower
+
+Use following command:
+`bower install swipeslider`
+or
+`bower install swipeslider --save`
+to save to your project as dependency.
+
+
+###Manual Installation
+
+Add these two files to your page:
 [swipeslider.min.js](http://alexemashev.github.io/swipeslider/dist/swipeslider.min.js)
 [swipeslider.css](http://alexemashev.github.io/swipeslider/dist/swipeslider.css)
 
