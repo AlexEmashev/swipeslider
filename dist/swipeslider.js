@@ -6,7 +6,7 @@
   
   $.fn.swipeslider = function (options) {
     var slideContainer = this;
-    var slider = this.find('.slides'); // reference to slider
+    var slider = this.find('.sw-slides'); // reference to slider
     var defaultSettings = {
       /**
       / How long one slide will change the other.
@@ -35,7 +35,12 @@
       /**
       * Enable swipe function.
       */
-      swipe: true
+      swipe: true,
+      /**
+      * Overall height of the slider. Set it to percent to make it responsive.
+      * Otherwise the slider will keep the height.
+      */
+      sliderHeight: '60%'
     };
 
     var settings = $.extend(defaultSettings, options);
@@ -67,9 +72,10 @@
     * Set initial values.
     */
     (function init() {
-      // 
-      slidesWidth = slider.width();
+      $(slideContainer).css('padding-top', settings.sliderHeight);
       
+      slidesWidth = slider.width();
+        
       // Change slide width when window changes.
       $(window).resize(resizeSlider);
           
@@ -78,9 +84,9 @@
       }
       
       // Add last slide before first and first before last to seamless and engless transition
-      slider.find('.slide:last-child').clone().prependTo(slider);
-      slider.find('.slide:nth-child(2)').clone().appendTo(slider);
-      slideCount = slider.find('.slide').length;
+      slider.find('.sw-slide:last-child').clone().prependTo(slider);
+      slider.find('.sw-slide:nth-child(2)').clone().appendTo(slider);
+      slideCount = slider.find('.sw-slide').length;
       
       if(settings.bullets) {
         insertBullets(slideCount - 2);
@@ -375,16 +381,16 @@
     * Next slide and Previous slide buttons.
     */
     function insertPrevNextButtons() {
-      slider.after('<span class="swipslider-next-prev swipslider-prev"></span>');
-      slideContainer.find('.swipslider-prev').click(function(){
+      slider.after('<span class="sw-next-prev sw-prev"></span>');
+      slideContainer.find('.sw-prev').click(function(){
         if(allowSlideSwitch){
           disableAutoPlay();
           switchBackward();
           enableAutoPlay();
         }
       });
-      slider.after('<span class="swipslider-next-prev swipslider-next"></span>');
-      slideContainer.find('.swipslider-next').click(function(){
+      slider.after('<span class="sw-next-prev sw-next"></span>');
+      slideContainer.find('.sw-next').click(function(){
         if(allowSlideSwitch) {
           disableAutoPlay();
           switchForward();
@@ -397,17 +403,17 @@
     * Add bullet indicator of current slide.
     */
     function insertBullets(count) {
-      slider.after('<ul class="swipslider-bullet"></ul>');
-      var bulletList = slider.parent().find('.swipslider-bullet');
+      slider.after('<ul class="sw-bullet"></ul>');
+      var bulletList = slider.parent().find('.sw-bullet');
       for (var i = 0; i < count; i++) {
        
         if (i == 0) {
-          bulletList.append('<li class="slide-' + i + ' active"></li>');
+          bulletList.append('<li class="sw-slide-' + i + ' active"></li>');
         } else {
-          bulletList.append('<li class="slide-' + i + '"></li>');
+          bulletList.append('<li class="sw-slide-' + i + '"></li>');
         }
         
-        var item = slideContainer.find('.slide-' + i);
+        var item = slideContainer.find('.sw-slide-' + i);
         
         // Workaround a problem when iterator i will have max value due to closure nature.
         (function(lockedIndex) {
@@ -437,8 +443,8 @@
         activeBullet = number - 1;
       }
       
-      slideContainer.find('.swipslider-bullet').find('li').removeClass('active');
-      slideContainer.find('.slide-' + activeBullet).addClass('active');
+      slideContainer.find('.sw-bullet').find('li').removeClass('active');
+      slideContainer.find('.sw-slide-' + activeBullet).addClass('active');
     }
 
     return slideContainer;    

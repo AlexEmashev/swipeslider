@@ -1,72 +1,73 @@
-/* line 1, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 1, D:/Temp/github/swipeslider/style.scss */
 * {
   box-sizing: border-box;
   font-family: sans-serif; }
 
-/* line 6, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 6, D:/Temp/github/swipeslider/style.scss */
 html, body {
   height: 100%; }
 
-/* line 10, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 10, D:/Temp/github/swipeslider/style.scss */
 body {
   margin: 0 auto;
   background-color: #383843;
-  max-width: 650px;
+  max-width: 640px;
   color: #fff8eb; }
 
-/* line 16, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 16, D:/Temp/github/swipeslider/style.scss */
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: #fff9f0;
   text-shadow: 1px 2px 5px black; }
 
-/* line 21, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 21, D:/Temp/github/swipeslider/style.scss */
 h1 {
   font-size: 50px; }
 
-/* line 25, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 25, D:/Temp/github/swipeslider/style.scss */
 h2 {
   margin-top: 80px; }
 
-/* line 30, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 30, D:/Temp/github/swipeslider/style.scss */
 a:link {
   color: #fff0d5; }
 
-/* line 33, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 33, D:/Temp/github/swipeslider/style.scss */
 a:hover {
   color: #aaa3fc; }
 
-/* line 36, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 36, D:/Temp/github/swipeslider/style.scss */
 a:active {
   color: #9289ff; }
 
-/* line 39, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 39, D:/Temp/github/swipeslider/style.scss */
 a:visited {
   color: #fff0d5; }
 
-/* line 44, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 44, D:/Temp/github/swipeslider/style.scss */
 .swipslider {
-  margin: 50px auto 0; }
+  margin: 0 auto; }
 
-/* line 51, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 48, D:/Temp/github/swipeslider/style.scss */
 #content_slider {
-  background-color: #f0f0f0; }
-  /* line 55, E:/yadisk/web-dev/swipeslider/style.scss */
+  background-color: #f0f0f0;
+  width: 640px; }
+  /* line 52, D:/Temp/github/swipeslider/style.scss */
   #content_slider .wanted {
     padding: 25px; }
-    /* line 57, E:/yadisk/web-dev/swipeslider/style.scss */
+    /* line 54, D:/Temp/github/swipeslider/style.scss */
     #content_slider .wanted:after {
       display: table;
       content: "";
       clear: both; }
-    /* line 63, E:/yadisk/web-dev/swipeslider/style.scss */
+    /* line 60, D:/Temp/github/swipeslider/style.scss */
     #content_slider .wanted img {
       float: left;
       position: relative;
       height: 225px;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.33);
       margin-right: 15px; }
-    /* line 71, E:/yadisk/web-dev/swipeslider/style.scss */
+    /* line 68, D:/Temp/github/swipeslider/style.scss */
     #content_slider .wanted .description {
       float: left;
       padding: 10px;
@@ -78,81 +79,77 @@ a:visited {
       width: 349px;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.58);
       white-space: normal; }
-      /* line 83, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 80, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description h1 {
         font-size: 18px;
         margin: 0;
         text-align: left;
         color: #515f6c;
         text-shadow: none; }
-      /* line 91, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 88, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description::after {
         display: table;
         content: "";
         clear: both; }
-      /* line 97, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 94, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description p {
         margin-bottom: 1px;
         margin-top: 6px;
         font-size: 14px; }
-      /* line 103, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 100, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description p.award {
         color: #be9a02; }
-      /* line 107, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 104, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description ul {
         list-style: square;
         padding-left: 20px;
         font-size: 14px; }
-      /* line 113, E:/yadisk/web-dev/swipeslider/style.scss */
+      /* line 110, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description strong {
         color: #515f6c; }
 
-/* line 122, E:/yadisk/web-dev/swipeslider/style.scss */
-#responsiveness {
-  background-color: #242424; }
-
-/* line 127, E:/yadisk/web-dev/swipeslider/style.scss */
-#customizability .swipslider-next-prev {
+/* line 120, D:/Temp/github/swipeslider/style.scss */
+#customizability .sw-next-prev {
   width: 120px;
   height: 60px;
   background-color: rgba(82, 82, 82, 0);
   color: rgba(255, 254, 235, 0.28);
   border-radius: 3px;
   font-size: 25px; }
-  /* line 135, E:/yadisk/web-dev/swipeslider/style.scss */
-  #customizability .swipslider-next-prev:hover {
+  /* line 128, D:/Temp/github/swipeslider/style.scss */
+  #customizability .sw-next-prev:hover {
     color: #fffeeb;
     background-color: #525252;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.57); }
 
-/* line 142, E:/yadisk/web-dev/swipeslider/style.scss */
-#customizability .swipslider-prev {
+/* line 135, D:/Temp/github/swipeslider/style.scss */
+#customizability .sw-prev {
   left: 0%; }
-  /* line 145, E:/yadisk/web-dev/swipeslider/style.scss */
-  #customizability .swipslider-prev::after {
+  /* line 138, D:/Temp/github/swipeslider/style.scss */
+  #customizability .sw-prev::after {
     line-height: 60px;
     content: '< back'; }
 
-/* line 151, E:/yadisk/web-dev/swipeslider/style.scss */
-#customizability .swipslider-next {
+/* line 144, D:/Temp/github/swipeslider/style.scss */
+#customizability .sw-next {
   right: 0%; }
-  /* line 154, E:/yadisk/web-dev/swipeslider/style.scss */
-  #customizability .swipslider-next::after {
+  /* line 147, D:/Temp/github/swipeslider/style.scss */
+  #customizability .sw-next::after {
     line-height: 60px;
     content: 'next >'; }
 
-/* line 160, E:/yadisk/web-dev/swipeslider/style.scss */
-#customizability .swipslider-bullet {
+/* line 153, D:/Temp/github/swipeslider/style.scss */
+#customizability .sw-bullet {
   top: 4%; }
-  /* line 163, E:/yadisk/web-dev/swipeslider/style.scss */
-  #customizability .swipslider-bullet li {
+  /* line 156, D:/Temp/github/swipeslider/style.scss */
+  #customizability .sw-bullet li {
     width: 10px;
     height: 5px;
     background-color: rgba(255, 254, 235, 0.28);
     border-radius: 0;
     vertical-align: middle; }
-    /* line 170, E:/yadisk/web-dev/swipeslider/style.scss */
-    #customizability .swipslider-bullet li.active {
+    /* line 163, D:/Temp/github/swipeslider/style.scss */
+    #customizability .sw-bullet li.active {
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
       border-top: 10px solid #fffeeb;
@@ -160,12 +157,12 @@ a:visited {
       width: 0;
       height: 0;
       vertical-align: bottom; }
-    /* line 181, E:/yadisk/web-dev/swipeslider/style.scss */
-    #customizability .swipslider-bullet li:hover {
+    /* line 174, D:/Temp/github/swipeslider/style.scss */
+    #customizability .sw-bullet li:hover {
       height: 10px;
       background-color: #fffeeb; }
 
-/* line 190, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 183, D:/Temp/github/swipeslider/style.scss */
 .slide-number {
   font-size: 60px;
   display: inline-block;
@@ -175,7 +172,7 @@ a:visited {
   transform: translate(-50%);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.54); }
 
-/* line 201, E:/yadisk/web-dev/swipeslider/style.scss */
+/* line 194, D:/Temp/github/swipeslider/style.scss */
 footer {
   margin-top: 20px;
   text-align: center;

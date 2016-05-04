@@ -1,11 +1,12 @@
-/* line 6, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
+/* line 6, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .swipslider {
   position: relative;
   overflow: hidden;
   display: block;
-  padding-top: 60%; }
-  /* line 12, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider .slides {
+  padding-top: 60%;
+  user-select: none; }
+  /* line 13, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .swipslider .sw-slides {
     display: block;
     padding: 0;
     list-style: none;
@@ -16,15 +17,15 @@
     transform: translateX(0);
     position: absolute;
     bottom: 0; }
-  /* line 26, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider .slide {
+  /* line 27, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .swipslider .sw-slide {
     width: 100%;
     height: 100%;
     margin: auto;
     display: inline-block;
     position: relative; }
-    /* line 33, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-    .swipslider .slide > img {
+    /* line 34, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    .swipslider .sw-slide > img {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -34,16 +35,16 @@
       margin-left: auto;
       margin-right: auto;
       user-select: none; }
-    /* line 46, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-    .swipslider .slide .content {
+    /* line 47, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    .swipslider .sw-slide .sw-content {
       width: 100%;
       height: 100%;
       margin-left: 0;
       margin-right: 0;
       font-size: 14px; }
 
-/* line 64, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-.swipslider-next-prev {
+/* line 57, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+.sw-next-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
   width: 50px;
@@ -60,32 +61,31 @@
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.2s ease-out;
-  -webkit-transition: all 0.2s ease-out;
   cursor: pointer;
   user-select: none; }
-  /* line 85, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider-next-prev:hover {
+  /* line 77, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .sw-next-prev:hover {
     background-color: rgba(255, 255, 255, 0.74); }
-  /* line 89, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider-next-prev:active {
+  /* line 81, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .sw-next-prev:active {
     background-color: rgba(255, 255, 255, 0.5); }
 
-/* line 94, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-.swipslider-prev {
+/* line 86, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+.sw-prev {
   left: 2%; }
-  /* line 96, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider-prev::after {
+  /* line 88, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .sw-prev::after {
     content: '<'; }
 
-/* line 101, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-.swipslider-next {
+/* line 93, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+.sw-next {
   right: 2%; }
-  /* line 103, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider-next::after {
+  /* line 95, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .sw-next::after {
     content: '>'; }
 
-/* line 108, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-.swipslider-bullet {
+/* line 100, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+.sw-bullet {
   position: absolute;
   bottom: 2%;
   list-style: none;
@@ -94,25 +94,24 @@
   text-align: center;
   padding: 0;
   margin: 0; }
-  /* line 117, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-  .swipslider-bullet li {
+  /* line 109, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  .sw-bullet li {
     width: 10px;
     height: 10px;
     background-color: rgba(160, 160, 160, 0.53);
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    transition: all 0.2s ease-out;
-    -webkit-transition: all 0.2s ease-out; }
-    /* line 127, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-    .swipslider-bullet li:hover {
+    transition: all 0.2s ease-out; }
+    /* line 118, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    .sw-bullet li:hover {
       background-color: rgba(255, 255, 255, 0.74); }
-    /* line 131, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-    .swipslider-bullet li.active {
+    /* line 122, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    .sw-bullet li.active {
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 2px rgba(160, 160, 160, 0.53); }
-    /* line 136, E:/yadisk/web-dev/swipeslider/dist/swipeslider.scss */
-    .swipslider-bullet li:not(:last-child) {
+    /* line 127, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    .sw-bullet li:not(:last-child) {
       margin-right: 5px; }
 
 /*# sourceMappingURL=swipeslider.css.map */
