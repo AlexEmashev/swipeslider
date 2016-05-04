@@ -1,11 +1,12 @@
-/* line 6, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .swipslider {
   position: relative;
   overflow: hidden;
   display: block;
   padding-top: 60%;
-  user-select: none; }
-  /* line 13, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .swipslider .sw-slides {
     display: block;
     padding: 0;
@@ -14,28 +15,30 @@
     height: 100%;
     white-space: nowrap;
     font-size: 0;
-    transform: translateX(0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     position: absolute;
     bottom: 0; }
-  /* line 27, D:/Temp/github/swipeslider/dist/swipeslider.scss */
   .swipslider .sw-slide {
     width: 100%;
     height: 100%;
     margin: auto;
     display: inline-block;
     position: relative; }
-    /* line 34, D:/Temp/github/swipeslider/dist/swipeslider.scss */
     .swipslider .sw-slide > img {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
       max-height: 100%;
       max-width: 100%;
       margin-left: auto;
       margin-right: auto;
-      user-select: none; }
-    /* line 47, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
     .swipslider .sw-slide .sw-content {
       width: 100%;
       height: 100%;
@@ -43,7 +46,6 @@
       margin-right: 0;
       font-size: 14px; }
 
-/* line 57, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .sw-next-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -56,35 +58,32 @@
   font-weight: bolder;
   color: rgba(160, 160, 160, 0.53);
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0);
   border-radius: 50%;
   text-decoration: none;
-  transition: all 0.2s ease-out;
+  transition: all .2s ease-out;
   cursor: pointer;
-  user-select: none; }
-  /* line 77, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .sw-next-prev:hover {
     background-color: rgba(255, 255, 255, 0.74); }
-  /* line 81, D:/Temp/github/swipeslider/dist/swipeslider.scss */
   .sw-next-prev:active {
     background-color: rgba(255, 255, 255, 0.5); }
 
-/* line 86, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .sw-prev {
   left: 2%; }
-  /* line 88, D:/Temp/github/swipeslider/dist/swipeslider.scss */
   .sw-prev::after {
     content: '<'; }
 
-/* line 93, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .sw-next {
   right: 2%; }
-  /* line 95, D:/Temp/github/swipeslider/dist/swipeslider.scss */
   .sw-next::after {
     content: '>'; }
 
-/* line 100, D:/Temp/github/swipeslider/dist/swipeslider.scss */
 .sw-bullet {
   position: absolute;
   bottom: 2%;
@@ -94,7 +93,6 @@
   text-align: center;
   padding: 0;
   margin: 0; }
-  /* line 109, D:/Temp/github/swipeslider/dist/swipeslider.scss */
   .sw-bullet li {
     width: 10px;
     height: 10px;
@@ -102,16 +100,11 @@
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    transition: all 0.2s ease-out; }
-    /* line 118, D:/Temp/github/swipeslider/dist/swipeslider.scss */
+    transition: all .2s ease-out; }
     .sw-bullet li:hover {
       background-color: rgba(255, 255, 255, 0.74); }
-    /* line 122, D:/Temp/github/swipeslider/dist/swipeslider.scss */
     .sw-bullet li.active {
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 2px rgba(160, 160, 160, 0.53); }
-    /* line 127, D:/Temp/github/swipeslider/dist/swipeslider.scss */
     .sw-bullet li:not(:last-child) {
       margin-right: 5px; }
-
-/*# sourceMappingURL=swipeslider.css.map */
