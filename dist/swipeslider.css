@@ -1,10 +1,13 @@
-/* line 6, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
 .swipslider {
   position: relative;
   overflow: hidden;
-  display: block; }
-  /* line 11, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider .slides {
+  display: block;
+  padding-top: 60%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  .swipslider .sw-slides {
     display: block;
     padding: 0;
     list-style: none;
@@ -12,42 +15,38 @@
     height: 100%;
     white-space: nowrap;
     font-size: 0;
-    transform: translateX(0);
-    position: relative; }
-  /* line 23, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider .slide {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    position: absolute;
+    bottom: 0; }
+  .swipslider .sw-slide {
     width: 100%;
     height: 100%;
     margin: auto;
     display: inline-block;
     position: relative; }
-    /* line 30, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-    .swipslider .slide img {
+    .swipslider .sw-slide > img {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
       max-height: 100%;
       max-width: 100%;
-      margin: auto; }
-    /* line 41, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-    .swipslider .slide .content {
+      margin-left: auto;
+      margin-right: auto;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
+    .swipslider .sw-slide .sw-content {
       width: 100%;
       height: 100%;
       margin-left: 0;
       margin-right: 0;
       font-size: 14px; }
-      /* line 48, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-      .swipslider .slide .content img {
-        position: static;
-        top: auto;
-        bottom: auto;
-        left: auto;
-        bottom: auto; }
 
-/* line 59, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-.swipslider-next-prev {
+.sw-next-prev {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
   width: 50px;
@@ -59,36 +58,33 @@
   font-weight: bolder;
   color: rgba(160, 160, 160, 0.53);
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0);
   border-radius: 50%;
   text-decoration: none;
-  transition: all 0.2s ease-out;
-  -webkit-transition: all 0.2s ease-out;
-  cursor: pointer; }
-  /* line 79, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider-next-prev:hover {
+  transition: all .2s ease-out;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  .sw-next-prev:hover {
     background-color: rgba(255, 255, 255, 0.74); }
-  /* line 83, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider-next-prev:active {
+  .sw-next-prev:active {
     background-color: rgba(255, 255, 255, 0.5); }
 
-/* line 88, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-.swipslider-prev {
+.sw-prev {
   left: 2%; }
-  /* line 90, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider-prev::after {
+  .sw-prev::after {
     content: '<'; }
 
-/* line 95, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-.swipslider-next {
+.sw-next {
   right: 2%; }
-  /* line 97, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider-next::after {
+  .sw-next::after {
     content: '>'; }
 
-/* line 102, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-.swipslider-bullet {
+.sw-bullet {
   position: absolute;
   bottom: 2%;
   list-style: none;
@@ -97,25 +93,18 @@
   text-align: center;
   padding: 0;
   margin: 0; }
-  /* line 111, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-  .swipslider-bullet li {
+  .sw-bullet li {
     width: 10px;
     height: 10px;
     background-color: rgba(160, 160, 160, 0.53);
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    transition: all 0.2s ease-out;
-    -webkit-transition: all 0.2s ease-out; }
-    /* line 121, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-    .swipslider-bullet li:hover {
+    transition: all .2s ease-out; }
+    .sw-bullet li:hover {
       background-color: rgba(255, 255, 255, 0.74); }
-    /* line 125, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-    .swipslider-bullet li.active {
+    .sw-bullet li.active {
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 2px rgba(160, 160, 160, 0.53); }
-    /* line 130, E:/OneDrive/My Files/webdev/image-slider/swipeslider.scss */
-    .swipslider-bullet li:not(:last-child) {
+    .sw-bullet li:not(:last-child) {
       margin-right: 5px; }
-
-/*# sourceMappingURL=swipeslider.css.map */

@@ -10,7 +10,7 @@ html, body {
 body {
   margin: 0 auto;
   background-color: #383843;
-  max-width: 650px;
+  max-width: 640px;
   color: #fff8eb;
 }
 h1, h2, h3, h4, h5, h6{
@@ -42,20 +42,12 @@ a{
 }
 
 .swipslider {
-  margin: 50px auto 0;
-  background-color: #404040;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.28);
-  
-}
-
-#full_feature {
-  max-width: 640px;
-  height: 256px;
+  margin: 0 auto;
 }
 
 #content_slider {
-  width: 640px;
   background-color: #f0f0f0;
+  width: 640px;
   
   .wanted {
     padding: 25px;
@@ -124,15 +116,8 @@ a{
 
 }
 
-#responsiveness {
-  height: 400px;
-  background-color: rgb(36, 36, 36);
-}
-
 #customizability {
-  height: 200px;
-  
-  .swipslider-next-prev {
+  .sw-next-prev {
     width: 120px;
     height: 60px;
     background-color: rgba(82, 82, 82, 0);
@@ -147,7 +132,7 @@ a{
     }
   }
   
-  .swipslider-prev {
+  .sw-prev {
     left: 0%;
     
     &::after {
@@ -156,7 +141,7 @@ a{
     }
   }
   
-  .swipslider-next {
+  .sw-next {
     right: 0%;
     
     &::after {
@@ -165,7 +150,7 @@ a{
     }
   }
   
-  .swipslider-bullet {
+  .sw-bullet {
     top: 4%;
     
     li {
