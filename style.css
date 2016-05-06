@@ -51,10 +51,10 @@ a:visited {
 /* line 48, D:/Temp/github/swipeslider/style.scss */
 #content_slider {
   background-color: #f0f0f0;
-  width: 640px; }
+  width: 100%; }
   /* line 52, D:/Temp/github/swipeslider/style.scss */
   #content_slider .wanted {
-    padding: 25px; }
+    padding: 2%; }
     /* line 54, D:/Temp/github/swipeslider/style.scss */
     #content_slider .wanted:after {
       display: table;
@@ -64,51 +64,52 @@ a:visited {
     #content_slider .wanted img {
       float: left;
       position: relative;
-      height: 225px;
+      display: block;
+      width: 38%;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.33);
-      margin-right: 15px; }
-    /* line 68, D:/Temp/github/swipeslider/style.scss */
+      margin-right: 2%; }
+    /* line 69, D:/Temp/github/swipeslider/style.scss */
     #content_slider .wanted .description {
       float: left;
-      padding: 10px;
+      padding: 2%;
       display: block;
       font-size: 16px;
       color: #343332;
       background: #e5e5e5;
-      height: 225px;
-      width: 349px;
+      min-height: 85%;
+      width: 59%;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.58);
       white-space: normal; }
-      /* line 80, D:/Temp/github/swipeslider/style.scss */
+      /* line 81, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description h1 {
         font-size: 18px;
         margin: 0;
         text-align: left;
         color: #515f6c;
         text-shadow: none; }
-      /* line 88, D:/Temp/github/swipeslider/style.scss */
+      /* line 89, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description::after {
         display: table;
         content: "";
         clear: both; }
-      /* line 94, D:/Temp/github/swipeslider/style.scss */
+      /* line 95, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description p {
         margin-bottom: 1px;
         margin-top: 6px;
         font-size: 14px; }
-      /* line 100, D:/Temp/github/swipeslider/style.scss */
+      /* line 101, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description p.award {
         color: #be9a02; }
-      /* line 104, D:/Temp/github/swipeslider/style.scss */
+      /* line 105, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description ul {
         list-style: square;
         padding-left: 20px;
         font-size: 14px; }
-      /* line 110, D:/Temp/github/swipeslider/style.scss */
+      /* line 111, D:/Temp/github/swipeslider/style.scss */
       #content_slider .wanted .description strong {
         color: #515f6c; }
 
-/* line 120, D:/Temp/github/swipeslider/style.scss */
+/* line 121, D:/Temp/github/swipeslider/style.scss */
 #customizability .sw-next-prev {
   width: 120px;
   height: 60px;
@@ -116,39 +117,39 @@ a:visited {
   color: rgba(255, 254, 235, 0.28);
   border-radius: 3px;
   font-size: 25px; }
-  /* line 128, D:/Temp/github/swipeslider/style.scss */
+  /* line 129, D:/Temp/github/swipeslider/style.scss */
   #customizability .sw-next-prev:hover {
     color: #fffeeb;
     background-color: #525252;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.57); }
 
-/* line 135, D:/Temp/github/swipeslider/style.scss */
+/* line 136, D:/Temp/github/swipeslider/style.scss */
 #customizability .sw-prev {
   left: 0%; }
-  /* line 138, D:/Temp/github/swipeslider/style.scss */
+  /* line 139, D:/Temp/github/swipeslider/style.scss */
   #customizability .sw-prev::after {
     line-height: 60px;
     content: '< back'; }
 
-/* line 144, D:/Temp/github/swipeslider/style.scss */
+/* line 145, D:/Temp/github/swipeslider/style.scss */
 #customizability .sw-next {
   right: 0%; }
-  /* line 147, D:/Temp/github/swipeslider/style.scss */
+  /* line 148, D:/Temp/github/swipeslider/style.scss */
   #customizability .sw-next::after {
     line-height: 60px;
     content: 'next >'; }
 
-/* line 153, D:/Temp/github/swipeslider/style.scss */
+/* line 154, D:/Temp/github/swipeslider/style.scss */
 #customizability .sw-bullet {
   top: 4%; }
-  /* line 156, D:/Temp/github/swipeslider/style.scss */
+  /* line 157, D:/Temp/github/swipeslider/style.scss */
   #customizability .sw-bullet li {
     width: 10px;
     height: 5px;
     background-color: rgba(255, 254, 235, 0.28);
     border-radius: 0;
     vertical-align: middle; }
-    /* line 163, D:/Temp/github/swipeslider/style.scss */
+    /* line 164, D:/Temp/github/swipeslider/style.scss */
     #customizability .sw-bullet li.active {
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
@@ -157,12 +158,12 @@ a:visited {
       width: 0;
       height: 0;
       vertical-align: bottom; }
-    /* line 174, D:/Temp/github/swipeslider/style.scss */
+    /* line 175, D:/Temp/github/swipeslider/style.scss */
     #customizability .sw-bullet li:hover {
       height: 10px;
       background-color: #fffeeb; }
 
-/* line 183, D:/Temp/github/swipeslider/style.scss */
+/* line 184, D:/Temp/github/swipeslider/style.scss */
 .slide-number {
   font-size: 60px;
   display: inline-block;
@@ -173,7 +174,7 @@ a:visited {
           transform: translate(-50%);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.54); }
 
-/* line 194, D:/Temp/github/swipeslider/style.scss */
+/* line 195, D:/Temp/github/swipeslider/style.scss */
 footer {
   margin-top: 20px;
   text-align: center;

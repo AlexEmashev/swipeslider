@@ -47,10 +47,10 @@ a{
 
 #content_slider {
   background-color: #f0f0f0;
-  width: 640px;
+  width: 100%;
   
   .wanted {
-    padding: 25px;
+    padding: 2%;
     &:after {
       display: table;
       content: "";
@@ -60,20 +60,21 @@ a{
     img {
       float: left;
       position: relative;
-      height: 225px;
+      display: block;
+      width: 38%;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.33);
-      margin-right: 15px;
+      margin-right: 2%;
     }
     
     .description {
       float: left;
-      padding: 10px;
+      padding: 2%;
       display: block;
       font-size: 16px;
       color: #343332;
       background: rgb(229, 229, 229);
-      height: 225px;
-      width: 349px;
+      min-height: 85%;
+      width: 59%;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.58);
       white-space: normal;
       
