@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
     sass = require('gulp-ruby-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     // Allow watch not to fail on the first error in pipe.
     plumber = require('gulp-plumber');
@@ -24,9 +25,10 @@ gulp.task('scripts', function(){
 // Compile Sass Task
 ///////////////////////////////////////////////////
 gulp.task('sass', function() {
-  return sass('dist/swipeslider.scss')
+  return sass('dist/swipeslider.scss', {sourcemap: true})
   .on('error', sass.logError)
-  .pipe(autoprefixer('last 2 versions'))
+  .pipe(autoprefixer('last 2 versions', 'ie 9'))
+  .pipe(sourcemaps.write('dist/'))
   .pipe(gulp.dest('dist/'))
   .pipe(reload({stream:true}));
 });
