@@ -1,14 +1,14 @@
-#Image Slider With Swipe
+# Image Slider With Swipe
 
-##About
+## About
 
 This is a tiny jQuery plugin that represents image slider (carousel). Slider supports mouse and touch inputs to slide through images. Also the slider supports HTML content.
 
 ![Demo picture](http://alexemashev.github.io/swipeslider/img/small_demo.gif)
 
-[Demo page](http://alexemashev.github.io/swipeslider/)
+Click the [demo page](http://alexemashev.github.io/swipeslider/)
 
-##Features
+## Features
 
 - mouse and touch (swipe) support;
 - next, previous buttons;
@@ -18,9 +18,9 @@ This is a tiny jQuery plugin that represents image slider (carousel). Slider sup
 - using css transition to change slides (so it should be video accelerated);
 - responsiveness, can take up available space and shrink images to fit slider if needed;
 
-##Installation
+## Installation
 
-###Installation Using Bower
+### Installation Using Bower
 
 Use following command:
 `bower install swipeslider`
@@ -29,7 +29,7 @@ or
 to save to your project as dependency.
 
 
-###Manual Installation
+### Manual Installation
 
 Add these two files to your page:
 [swipeslider.min.js](http://alexemashev.github.io/swipeslider/dist/swipeslider.min.js)
@@ -70,9 +70,9 @@ $(window).load(function() {
 
 Do not forget to add at least height to your slider via css.
 
-##How To Customize
+## How To Customize
 
-###Plugin Settings
+### Plugin Settings
 
 Plugin can be customized via JavaScript object. For example:
 
@@ -91,7 +91,7 @@ $('#sample_slider').swipeslider({autoPlay: false, swipe: false});
 |bullets           |true      |Show bullets that indicate which slide is active and used to quick switching between slides.|
 |swipe             |true      |Enable swipe function to switch between slides.|
 
-###Style
+### Style
 
 The interface can be customized by overriding attributes of CSS classes. *SCSS file included.*
 
@@ -109,10 +109,10 @@ The interface can be customized by overriding attributes of CSS classes. *SCSS f
 |.sw-bullet li  |Single bullet|
 |.sw-bullet li.active  |Active bullet|
 
-##Dependencies
+## Dependencies
 
 - jQuery;
 
-##License
+## License
 
 The MIT public license.
