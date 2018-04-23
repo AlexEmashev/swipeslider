@@ -20,6 +20,11 @@ Click the [demo page](http://alexemashev.github.io/swipeslider/)
 
 ## Installation
 
+### Installation Using npm
+
+Use following command:
+`npm i alexemashev-swipeslider`
+
 ### Installation Using Bower
 
 Use following command:
@@ -27,7 +32,6 @@ Use following command:
 or
 `bower install swipeslider --save`
 to save to your project as dependency.
-
 
 ### Manual Installation
 
