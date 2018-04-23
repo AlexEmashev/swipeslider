@@ -1,6 +1,6 @@
 {
   "name": "swipeslider",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "jQuery plugin that represents responsive image slider with touch support.",
   "main": "dist/swipeslider.js",
   "scripts": {
